@@ -11,9 +11,11 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.9.0",
     "@repo/db": "*",
     "@repo/ui": "*",
     "next": "^15.3.0",
+    "next-auth": "^5.0.0-beta.27",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
