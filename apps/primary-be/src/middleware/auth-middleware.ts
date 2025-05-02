@@ -14,7 +14,7 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
             return;
         }
 
-        const secret = process.env.NEXT_AUTH_SECRET;
+        const secret = process.env.NEXTAUTH_SECRET;
 
         if(!secret) {
             res.status(404).json({
