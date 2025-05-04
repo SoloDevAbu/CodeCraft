@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
 import { prisma } from "@repo/db";
+import { WorkerAgent } from "@repo/ai";
+import { RoadmapSchema } from "@repo/ai";
 
 export const createProject = async (req: Request, res: Response) => {
     const { name, description } = req.body;
     const userId = req.user.id;
+    //TODO: get actual history
+    const history = ['']
 
     try {
         const user = await prisma.user.findUnique({
@@ -40,9 +44,15 @@ export const createProject = async (req: Request, res: Response) => {
             }
         })
 
+        const worker = WorkerAgent.getInstance();
+
+        const response = await worker.generateResponse(description, history, RoadmapSchema);
+
+        console.log('llm response', JSON.stringify(response, null, 2));
         res.status(201).json({
             status: 'success',
-            message: 'Project Created Successfully'
+            message: 'Project Created Successfully',
+            roadMap: response
         })
     } catch (error) {
         console.error("Error creating project:", error);

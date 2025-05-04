@@ -1,9 +1,12 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "include": [
-    "./src/*"
+    "./src/**/*" // This will include all files in src and its subdirectories
   ],
   "exclude": [
     "node_modules"
   ],
+  "compilerOptions": {
+    "jsx": "react" // Add this to set the JSX option
+  }
 }
