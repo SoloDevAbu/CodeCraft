@@ -139,9 +139,23 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ManagerResponseScalarFieldEnum = {
+  id: 'id',
+  frontendRoadMap: 'frontendRoadMap',
+  backendRoadMap: 'backendRoadMap',
+  qaRoadmap: 'qaRoadmap',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -153,6 +167,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
 exports.Status = exports.$Enums.Status = {
   ACTIVE: 'ACTIVE',
   PENDING: 'PENDING',
@@ -161,7 +181,8 @@ exports.Status = exports.$Enums.Status = {
 
 exports.Prisma.ModelName = {
   Project: 'Project',
-  User: 'User'
+  User: 'User',
+  ManagerResponse: 'ManagerResponse'
 };
 
 /**

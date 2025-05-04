@@ -23,6 +23,11 @@ export type Project = $Result.DefaultSelection<Prisma.$ProjectPayload>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model ManagerResponse
+ * 
+ */
+export type ManagerResponse = $Result.DefaultSelection<Prisma.$ManagerResponsePayload>
 
 /**
  * Enums
@@ -186,6 +191,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.managerResponse`: Exposes CRUD operations for the **ManagerResponse** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ManagerResponses
+    * const managerResponses = await prisma.managerResponse.findMany()
+    * ```
+    */
+  get managerResponse(): Prisma.ManagerResponseDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -627,7 +642,8 @@ export namespace Prisma {
 
   export const ModelName: {
     Project: 'Project',
-    User: 'User'
+    User: 'User',
+    ManagerResponse: 'ManagerResponse'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -646,7 +662,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "project" | "user"
+      modelProps: "project" | "user" | "managerResponse"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -798,6 +814,80 @@ export namespace Prisma {
           }
         }
       }
+      ManagerResponse: {
+        payload: Prisma.$ManagerResponsePayload<ExtArgs>
+        fields: Prisma.ManagerResponseFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ManagerResponseFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ManagerResponseFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>
+          }
+          findFirst: {
+            args: Prisma.ManagerResponseFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ManagerResponseFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>
+          }
+          findMany: {
+            args: Prisma.ManagerResponseFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>[]
+          }
+          create: {
+            args: Prisma.ManagerResponseCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>
+          }
+          createMany: {
+            args: Prisma.ManagerResponseCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ManagerResponseCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>[]
+          }
+          delete: {
+            args: Prisma.ManagerResponseDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>
+          }
+          update: {
+            args: Prisma.ManagerResponseUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>
+          }
+          deleteMany: {
+            args: Prisma.ManagerResponseDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ManagerResponseUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ManagerResponseUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>[]
+          }
+          upsert: {
+            args: Prisma.ManagerResponseUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ManagerResponsePayload>
+          }
+          aggregate: {
+            args: Prisma.ManagerResponseAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateManagerResponse>
+          }
+          groupBy: {
+            args: Prisma.ManagerResponseGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ManagerResponseGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ManagerResponseCountArgs<ExtArgs>
+            result: $Utils.Optional<ManagerResponseCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -884,6 +974,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     project?: ProjectOmit
     user?: UserOmit
+    managerResponse?: ManagerResponseOmit
   }
 
   /* Types for Logging */
@@ -971,6 +1062,37 @@ export namespace Prisma {
   /**
    * Count Types
    */
+
+
+  /**
+   * Count Type ProjectCountOutputType
+   */
+
+  export type ProjectCountOutputType = {
+    managerResponse: number
+  }
+
+  export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    managerResponse?: boolean | ProjectCountOutputTypeCountManagerResponseArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProjectCountOutputType
+     */
+    select?: ProjectCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountManagerResponseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ManagerResponseWhereInput
+  }
 
 
   /**
@@ -1188,7 +1310,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    managerResponse?: boolean | Project$managerResponseArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1225,7 +1349,9 @@ export namespace Prisma {
 
   export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "status" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    managerResponse?: boolean | Project$managerResponseArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
+    _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
@@ -1237,6 +1363,7 @@ export namespace Prisma {
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
     objects: {
+      managerResponse: Prisma.$ManagerResponsePayload<ExtArgs>[]
       User: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1641,6 +1768,7 @@ export namespace Prisma {
    */
   export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    managerResponse<T extends Project$managerResponseArgs<ExtArgs> = {}>(args?: Subset<T, Project$managerResponseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2071,6 +2199,30 @@ export namespace Prisma {
      * Limit how many Projects to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Project.managerResponse
+   */
+  export type Project$managerResponseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    where?: ManagerResponseWhereInput
+    orderBy?: ManagerResponseOrderByWithRelationInput | ManagerResponseOrderByWithRelationInput[]
+    cursor?: ManagerResponseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ManagerResponseScalarFieldEnum | ManagerResponseScalarFieldEnum[]
   }
 
   /**
@@ -3176,6 +3328,1078 @@ export namespace Prisma {
 
 
   /**
+   * Model ManagerResponse
+   */
+
+  export type AggregateManagerResponse = {
+    _count: ManagerResponseCountAggregateOutputType | null
+    _min: ManagerResponseMinAggregateOutputType | null
+    _max: ManagerResponseMaxAggregateOutputType | null
+  }
+
+  export type ManagerResponseMinAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type ManagerResponseMaxAggregateOutputType = {
+    id: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type ManagerResponseCountAggregateOutputType = {
+    id: number
+    frontendRoadMap: number
+    backendRoadMap: number
+    qaRoadmap: number
+    createdAt: number
+    updatedAt: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type ManagerResponseMinAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type ManagerResponseMaxAggregateInputType = {
+    id?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type ManagerResponseCountAggregateInputType = {
+    id?: true
+    frontendRoadMap?: true
+    backendRoadMap?: true
+    qaRoadmap?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type ManagerResponseAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ManagerResponse to aggregate.
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ManagerResponses to fetch.
+     */
+    orderBy?: ManagerResponseOrderByWithRelationInput | ManagerResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ManagerResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ManagerResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ManagerResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ManagerResponses
+    **/
+    _count?: true | ManagerResponseCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ManagerResponseMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ManagerResponseMaxAggregateInputType
+  }
+
+  export type GetManagerResponseAggregateType<T extends ManagerResponseAggregateArgs> = {
+        [P in keyof T & keyof AggregateManagerResponse]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateManagerResponse[P]>
+      : GetScalarType<T[P], AggregateManagerResponse[P]>
+  }
+
+
+
+
+  export type ManagerResponseGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ManagerResponseWhereInput
+    orderBy?: ManagerResponseOrderByWithAggregationInput | ManagerResponseOrderByWithAggregationInput[]
+    by: ManagerResponseScalarFieldEnum[] | ManagerResponseScalarFieldEnum
+    having?: ManagerResponseScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ManagerResponseCountAggregateInputType | true
+    _min?: ManagerResponseMinAggregateInputType
+    _max?: ManagerResponseMaxAggregateInputType
+  }
+
+  export type ManagerResponseGroupByOutputType = {
+    id: string
+    frontendRoadMap: JsonValue
+    backendRoadMap: JsonValue
+    qaRoadmap: JsonValue
+    createdAt: Date
+    updatedAt: Date
+    projectId: string
+    _count: ManagerResponseCountAggregateOutputType | null
+    _min: ManagerResponseMinAggregateOutputType | null
+    _max: ManagerResponseMaxAggregateOutputType | null
+  }
+
+  type GetManagerResponseGroupByPayload<T extends ManagerResponseGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ManagerResponseGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ManagerResponseGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ManagerResponseGroupByOutputType[P]>
+            : GetScalarType<T[P], ManagerResponseGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ManagerResponseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    frontendRoadMap?: boolean
+    backendRoadMap?: boolean
+    qaRoadmap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["managerResponse"]>
+
+  export type ManagerResponseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    frontendRoadMap?: boolean
+    backendRoadMap?: boolean
+    qaRoadmap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["managerResponse"]>
+
+  export type ManagerResponseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    frontendRoadMap?: boolean
+    backendRoadMap?: boolean
+    qaRoadmap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["managerResponse"]>
+
+  export type ManagerResponseSelectScalar = {
+    id?: boolean
+    frontendRoadMap?: boolean
+    backendRoadMap?: boolean
+    qaRoadmap?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+  }
+
+  export type ManagerResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "frontendRoadMap" | "backendRoadMap" | "qaRoadmap" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["managerResponse"]>
+  export type ManagerResponseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ManagerResponseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type ManagerResponseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $ManagerResponsePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ManagerResponse"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      frontendRoadMap: Prisma.JsonValue
+      backendRoadMap: Prisma.JsonValue
+      qaRoadmap: Prisma.JsonValue
+      createdAt: Date
+      updatedAt: Date
+      projectId: string
+    }, ExtArgs["result"]["managerResponse"]>
+    composites: {}
+  }
+
+  type ManagerResponseGetPayload<S extends boolean | null | undefined | ManagerResponseDefaultArgs> = $Result.GetResult<Prisma.$ManagerResponsePayload, S>
+
+  type ManagerResponseCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ManagerResponseFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ManagerResponseCountAggregateInputType | true
+    }
+
+  export interface ManagerResponseDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ManagerResponse'], meta: { name: 'ManagerResponse' } }
+    /**
+     * Find zero or one ManagerResponse that matches the filter.
+     * @param {ManagerResponseFindUniqueArgs} args - Arguments to find a ManagerResponse
+     * @example
+     * // Get one ManagerResponse
+     * const managerResponse = await prisma.managerResponse.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ManagerResponseFindUniqueArgs>(args: SelectSubset<T, ManagerResponseFindUniqueArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ManagerResponse that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ManagerResponseFindUniqueOrThrowArgs} args - Arguments to find a ManagerResponse
+     * @example
+     * // Get one ManagerResponse
+     * const managerResponse = await prisma.managerResponse.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ManagerResponseFindUniqueOrThrowArgs>(args: SelectSubset<T, ManagerResponseFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ManagerResponse that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseFindFirstArgs} args - Arguments to find a ManagerResponse
+     * @example
+     * // Get one ManagerResponse
+     * const managerResponse = await prisma.managerResponse.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ManagerResponseFindFirstArgs>(args?: SelectSubset<T, ManagerResponseFindFirstArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ManagerResponse that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseFindFirstOrThrowArgs} args - Arguments to find a ManagerResponse
+     * @example
+     * // Get one ManagerResponse
+     * const managerResponse = await prisma.managerResponse.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ManagerResponseFindFirstOrThrowArgs>(args?: SelectSubset<T, ManagerResponseFindFirstOrThrowArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ManagerResponses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ManagerResponses
+     * const managerResponses = await prisma.managerResponse.findMany()
+     * 
+     * // Get first 10 ManagerResponses
+     * const managerResponses = await prisma.managerResponse.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const managerResponseWithIdOnly = await prisma.managerResponse.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ManagerResponseFindManyArgs>(args?: SelectSubset<T, ManagerResponseFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ManagerResponse.
+     * @param {ManagerResponseCreateArgs} args - Arguments to create a ManagerResponse.
+     * @example
+     * // Create one ManagerResponse
+     * const ManagerResponse = await prisma.managerResponse.create({
+     *   data: {
+     *     // ... data to create a ManagerResponse
+     *   }
+     * })
+     * 
+     */
+    create<T extends ManagerResponseCreateArgs>(args: SelectSubset<T, ManagerResponseCreateArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ManagerResponses.
+     * @param {ManagerResponseCreateManyArgs} args - Arguments to create many ManagerResponses.
+     * @example
+     * // Create many ManagerResponses
+     * const managerResponse = await prisma.managerResponse.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ManagerResponseCreateManyArgs>(args?: SelectSubset<T, ManagerResponseCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ManagerResponses and returns the data saved in the database.
+     * @param {ManagerResponseCreateManyAndReturnArgs} args - Arguments to create many ManagerResponses.
+     * @example
+     * // Create many ManagerResponses
+     * const managerResponse = await prisma.managerResponse.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ManagerResponses and only return the `id`
+     * const managerResponseWithIdOnly = await prisma.managerResponse.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ManagerResponseCreateManyAndReturnArgs>(args?: SelectSubset<T, ManagerResponseCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ManagerResponse.
+     * @param {ManagerResponseDeleteArgs} args - Arguments to delete one ManagerResponse.
+     * @example
+     * // Delete one ManagerResponse
+     * const ManagerResponse = await prisma.managerResponse.delete({
+     *   where: {
+     *     // ... filter to delete one ManagerResponse
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ManagerResponseDeleteArgs>(args: SelectSubset<T, ManagerResponseDeleteArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ManagerResponse.
+     * @param {ManagerResponseUpdateArgs} args - Arguments to update one ManagerResponse.
+     * @example
+     * // Update one ManagerResponse
+     * const managerResponse = await prisma.managerResponse.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ManagerResponseUpdateArgs>(args: SelectSubset<T, ManagerResponseUpdateArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ManagerResponses.
+     * @param {ManagerResponseDeleteManyArgs} args - Arguments to filter ManagerResponses to delete.
+     * @example
+     * // Delete a few ManagerResponses
+     * const { count } = await prisma.managerResponse.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ManagerResponseDeleteManyArgs>(args?: SelectSubset<T, ManagerResponseDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ManagerResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ManagerResponses
+     * const managerResponse = await prisma.managerResponse.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ManagerResponseUpdateManyArgs>(args: SelectSubset<T, ManagerResponseUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ManagerResponses and returns the data updated in the database.
+     * @param {ManagerResponseUpdateManyAndReturnArgs} args - Arguments to update many ManagerResponses.
+     * @example
+     * // Update many ManagerResponses
+     * const managerResponse = await prisma.managerResponse.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ManagerResponses and only return the `id`
+     * const managerResponseWithIdOnly = await prisma.managerResponse.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ManagerResponseUpdateManyAndReturnArgs>(args: SelectSubset<T, ManagerResponseUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ManagerResponse.
+     * @param {ManagerResponseUpsertArgs} args - Arguments to update or create a ManagerResponse.
+     * @example
+     * // Update or create a ManagerResponse
+     * const managerResponse = await prisma.managerResponse.upsert({
+     *   create: {
+     *     // ... data to create a ManagerResponse
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ManagerResponse we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ManagerResponseUpsertArgs>(args: SelectSubset<T, ManagerResponseUpsertArgs<ExtArgs>>): Prisma__ManagerResponseClient<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ManagerResponses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseCountArgs} args - Arguments to filter ManagerResponses to count.
+     * @example
+     * // Count the number of ManagerResponses
+     * const count = await prisma.managerResponse.count({
+     *   where: {
+     *     // ... the filter for the ManagerResponses we want to count
+     *   }
+     * })
+    **/
+    count<T extends ManagerResponseCountArgs>(
+      args?: Subset<T, ManagerResponseCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ManagerResponseCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ManagerResponse.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ManagerResponseAggregateArgs>(args: Subset<T, ManagerResponseAggregateArgs>): Prisma.PrismaPromise<GetManagerResponseAggregateType<T>>
+
+    /**
+     * Group by ManagerResponse.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ManagerResponseGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ManagerResponseGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ManagerResponseGroupByArgs['orderBy'] }
+        : { orderBy?: ManagerResponseGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ManagerResponseGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetManagerResponseGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ManagerResponse model
+   */
+  readonly fields: ManagerResponseFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ManagerResponse.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ManagerResponseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ManagerResponse model
+   */
+  interface ManagerResponseFieldRefs {
+    readonly id: FieldRef<"ManagerResponse", 'String'>
+    readonly frontendRoadMap: FieldRef<"ManagerResponse", 'Json'>
+    readonly backendRoadMap: FieldRef<"ManagerResponse", 'Json'>
+    readonly qaRoadmap: FieldRef<"ManagerResponse", 'Json'>
+    readonly createdAt: FieldRef<"ManagerResponse", 'DateTime'>
+    readonly updatedAt: FieldRef<"ManagerResponse", 'DateTime'>
+    readonly projectId: FieldRef<"ManagerResponse", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ManagerResponse findUnique
+   */
+  export type ManagerResponseFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which ManagerResponse to fetch.
+     */
+    where: ManagerResponseWhereUniqueInput
+  }
+
+  /**
+   * ManagerResponse findUniqueOrThrow
+   */
+  export type ManagerResponseFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which ManagerResponse to fetch.
+     */
+    where: ManagerResponseWhereUniqueInput
+  }
+
+  /**
+   * ManagerResponse findFirst
+   */
+  export type ManagerResponseFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which ManagerResponse to fetch.
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ManagerResponses to fetch.
+     */
+    orderBy?: ManagerResponseOrderByWithRelationInput | ManagerResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ManagerResponses.
+     */
+    cursor?: ManagerResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ManagerResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ManagerResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ManagerResponses.
+     */
+    distinct?: ManagerResponseScalarFieldEnum | ManagerResponseScalarFieldEnum[]
+  }
+
+  /**
+   * ManagerResponse findFirstOrThrow
+   */
+  export type ManagerResponseFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which ManagerResponse to fetch.
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ManagerResponses to fetch.
+     */
+    orderBy?: ManagerResponseOrderByWithRelationInput | ManagerResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ManagerResponses.
+     */
+    cursor?: ManagerResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ManagerResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ManagerResponses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ManagerResponses.
+     */
+    distinct?: ManagerResponseScalarFieldEnum | ManagerResponseScalarFieldEnum[]
+  }
+
+  /**
+   * ManagerResponse findMany
+   */
+  export type ManagerResponseFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * Filter, which ManagerResponses to fetch.
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ManagerResponses to fetch.
+     */
+    orderBy?: ManagerResponseOrderByWithRelationInput | ManagerResponseOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ManagerResponses.
+     */
+    cursor?: ManagerResponseWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ManagerResponses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ManagerResponses.
+     */
+    skip?: number
+    distinct?: ManagerResponseScalarFieldEnum | ManagerResponseScalarFieldEnum[]
+  }
+
+  /**
+   * ManagerResponse create
+   */
+  export type ManagerResponseCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ManagerResponse.
+     */
+    data: XOR<ManagerResponseCreateInput, ManagerResponseUncheckedCreateInput>
+  }
+
+  /**
+   * ManagerResponse createMany
+   */
+  export type ManagerResponseCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ManagerResponses.
+     */
+    data: ManagerResponseCreateManyInput | ManagerResponseCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ManagerResponse createManyAndReturn
+   */
+  export type ManagerResponseCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * The data used to create many ManagerResponses.
+     */
+    data: ManagerResponseCreateManyInput | ManagerResponseCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ManagerResponse update
+   */
+  export type ManagerResponseUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ManagerResponse.
+     */
+    data: XOR<ManagerResponseUpdateInput, ManagerResponseUncheckedUpdateInput>
+    /**
+     * Choose, which ManagerResponse to update.
+     */
+    where: ManagerResponseWhereUniqueInput
+  }
+
+  /**
+   * ManagerResponse updateMany
+   */
+  export type ManagerResponseUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ManagerResponses.
+     */
+    data: XOR<ManagerResponseUpdateManyMutationInput, ManagerResponseUncheckedUpdateManyInput>
+    /**
+     * Filter which ManagerResponses to update
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * Limit how many ManagerResponses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ManagerResponse updateManyAndReturn
+   */
+  export type ManagerResponseUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * The data used to update ManagerResponses.
+     */
+    data: XOR<ManagerResponseUpdateManyMutationInput, ManagerResponseUncheckedUpdateManyInput>
+    /**
+     * Filter which ManagerResponses to update
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * Limit how many ManagerResponses to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ManagerResponse upsert
+   */
+  export type ManagerResponseUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ManagerResponse to update in case it exists.
+     */
+    where: ManagerResponseWhereUniqueInput
+    /**
+     * In case the ManagerResponse found by the `where` argument doesn't exist, create a new ManagerResponse with this data.
+     */
+    create: XOR<ManagerResponseCreateInput, ManagerResponseUncheckedCreateInput>
+    /**
+     * In case the ManagerResponse was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ManagerResponseUpdateInput, ManagerResponseUncheckedUpdateInput>
+  }
+
+  /**
+   * ManagerResponse delete
+   */
+  export type ManagerResponseDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+    /**
+     * Filter which ManagerResponse to delete.
+     */
+    where: ManagerResponseWhereUniqueInput
+  }
+
+  /**
+   * ManagerResponse deleteMany
+   */
+  export type ManagerResponseDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ManagerResponses to delete
+     */
+    where?: ManagerResponseWhereInput
+    /**
+     * Limit how many ManagerResponses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ManagerResponse without action
+   */
+  export type ManagerResponseDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ManagerResponse
+     */
+    select?: ManagerResponseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ManagerResponse
+     */
+    omit?: ManagerResponseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ManagerResponseInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3214,12 +4438,32 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const ManagerResponseScalarFieldEnum: {
+    id: 'id',
+    frontendRoadMap: 'frontendRoadMap',
+    backendRoadMap: 'backendRoadMap',
+    qaRoadmap: 'qaRoadmap',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    projectId: 'projectId'
+  };
+
+  export type ManagerResponseScalarFieldEnum = (typeof ManagerResponseScalarFieldEnum)[keyof typeof ManagerResponseScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -3236,6 +4480,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -3286,6 +4539,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -3313,6 +4580,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: StringFilter<"Project"> | string
+    managerResponse?: ManagerResponseListRelationFilter
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
@@ -3324,6 +4592,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    managerResponse?: ManagerResponseOrderByRelationAggregateInput
     User?: UserOrderByWithRelationInput
   }
 
@@ -3338,6 +4607,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: StringFilter<"Project"> | string
+    managerResponse?: ManagerResponseListRelationFilter
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
@@ -3427,6 +4697,71 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type ManagerResponseWhereInput = {
+    AND?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
+    OR?: ManagerResponseWhereInput[]
+    NOT?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
+    id?: StringFilter<"ManagerResponse"> | string
+    frontendRoadMap?: JsonFilter<"ManagerResponse">
+    backendRoadMap?: JsonFilter<"ManagerResponse">
+    qaRoadmap?: JsonFilter<"ManagerResponse">
+    createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    projectId?: StringFilter<"ManagerResponse"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type ManagerResponseOrderByWithRelationInput = {
+    id?: SortOrder
+    frontendRoadMap?: SortOrder
+    backendRoadMap?: SortOrder
+    qaRoadmap?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type ManagerResponseWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
+    OR?: ManagerResponseWhereInput[]
+    NOT?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
+    frontendRoadMap?: JsonFilter<"ManagerResponse">
+    backendRoadMap?: JsonFilter<"ManagerResponse">
+    qaRoadmap?: JsonFilter<"ManagerResponse">
+    createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    projectId?: StringFilter<"ManagerResponse"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type ManagerResponseOrderByWithAggregationInput = {
+    id?: SortOrder
+    frontendRoadMap?: SortOrder
+    backendRoadMap?: SortOrder
+    qaRoadmap?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    _count?: ManagerResponseCountOrderByAggregateInput
+    _max?: ManagerResponseMaxOrderByAggregateInput
+    _min?: ManagerResponseMinOrderByAggregateInput
+  }
+
+  export type ManagerResponseScalarWhereWithAggregatesInput = {
+    AND?: ManagerResponseScalarWhereWithAggregatesInput | ManagerResponseScalarWhereWithAggregatesInput[]
+    OR?: ManagerResponseScalarWhereWithAggregatesInput[]
+    NOT?: ManagerResponseScalarWhereWithAggregatesInput | ManagerResponseScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ManagerResponse"> | string
+    frontendRoadMap?: JsonWithAggregatesFilter<"ManagerResponse">
+    backendRoadMap?: JsonWithAggregatesFilter<"ManagerResponse">
+    qaRoadmap?: JsonWithAggregatesFilter<"ManagerResponse">
+    createdAt?: DateTimeWithAggregatesFilter<"ManagerResponse"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ManagerResponse"> | Date | string
+    projectId?: StringWithAggregatesFilter<"ManagerResponse"> | string
+  }
+
   export type ProjectCreateInput = {
     id?: string
     name: string
@@ -3434,6 +4769,7 @@ export namespace Prisma {
     status: $Enums.Status
     createdAt?: Date | string
     updatedAt: Date | string
+    managerResponse?: ManagerResponseCreateNestedManyWithoutProjectInput
     User: UserCreateNestedOneWithoutProjectInput
   }
 
@@ -3445,6 +4781,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt: Date | string
     userId: string
+    managerResponse?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -3454,6 +4791,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    managerResponse?: ManagerResponseUpdateManyWithoutProjectNestedInput
     User?: UserUpdateOneRequiredWithoutProjectNestedInput
   }
 
@@ -3465,6 +4803,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    managerResponse?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -3563,6 +4902,75 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ManagerResponseCreateInput = {
+    id?: string
+    frontendRoadMap: JsonNullValueInput | InputJsonValue
+    backendRoadMap: JsonNullValueInput | InputJsonValue
+    qaRoadmap: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    project: ProjectCreateNestedOneWithoutManagerResponseInput
+  }
+
+  export type ManagerResponseUncheckedCreateInput = {
+    id?: string
+    frontendRoadMap: JsonNullValueInput | InputJsonValue
+    backendRoadMap: JsonNullValueInput | InputJsonValue
+    qaRoadmap: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    projectId: string
+  }
+
+  export type ManagerResponseUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutManagerResponseNestedInput
+  }
+
+  export type ManagerResponseUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ManagerResponseCreateManyInput = {
+    id?: string
+    frontendRoadMap: JsonNullValueInput | InputJsonValue
+    backendRoadMap: JsonNullValueInput | InputJsonValue
+    qaRoadmap: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+    projectId: string
+  }
+
+  export type ManagerResponseUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ManagerResponseUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3611,6 +5019,12 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type ManagerResponseListRelationFilter = {
+    every?: ManagerResponseWhereInput
+    some?: ManagerResponseWhereInput
+    none?: ManagerResponseWhereInput
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3619,6 +5033,10 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ManagerResponseOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type ProjectCountOrderByAggregateInput = {
@@ -3747,11 +5165,103 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ProjectScalarRelationFilter = {
+    is?: ProjectWhereInput
+    isNot?: ProjectWhereInput
+  }
+
+  export type ManagerResponseCountOrderByAggregateInput = {
+    id?: SortOrder
+    frontendRoadMap?: SortOrder
+    backendRoadMap?: SortOrder
+    qaRoadmap?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type ManagerResponseMaxOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type ManagerResponseMinOrderByAggregateInput = {
+    id?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type ManagerResponseCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput> | ManagerResponseCreateWithoutProjectInput[] | ManagerResponseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ManagerResponseCreateOrConnectWithoutProjectInput | ManagerResponseCreateOrConnectWithoutProjectInput[]
+    createMany?: ManagerResponseCreateManyProjectInputEnvelope
+    connect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+  }
 
   export type UserCreateNestedOneWithoutProjectInput = {
     create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
     connectOrCreate?: UserCreateOrConnectWithoutProjectInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type ManagerResponseUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput> | ManagerResponseCreateWithoutProjectInput[] | ManagerResponseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ManagerResponseCreateOrConnectWithoutProjectInput | ManagerResponseCreateOrConnectWithoutProjectInput[]
+    createMany?: ManagerResponseCreateManyProjectInputEnvelope
+    connect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3770,12 +5280,40 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type ManagerResponseUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput> | ManagerResponseCreateWithoutProjectInput[] | ManagerResponseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ManagerResponseCreateOrConnectWithoutProjectInput | ManagerResponseCreateOrConnectWithoutProjectInput[]
+    upsert?: ManagerResponseUpsertWithWhereUniqueWithoutProjectInput | ManagerResponseUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ManagerResponseCreateManyProjectInputEnvelope
+    set?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    disconnect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    delete?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    connect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    update?: ManagerResponseUpdateWithWhereUniqueWithoutProjectInput | ManagerResponseUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ManagerResponseUpdateManyWithWhereWithoutProjectInput | ManagerResponseUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
+  }
+
   export type UserUpdateOneRequiredWithoutProjectNestedInput = {
     create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
     connectOrCreate?: UserCreateOrConnectWithoutProjectInput
     upsert?: UserUpsertWithoutProjectInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectInput, UserUpdateWithoutProjectInput>, UserUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput> | ManagerResponseCreateWithoutProjectInput[] | ManagerResponseUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: ManagerResponseCreateOrConnectWithoutProjectInput | ManagerResponseCreateOrConnectWithoutProjectInput[]
+    upsert?: ManagerResponseUpsertWithWhereUniqueWithoutProjectInput | ManagerResponseUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: ManagerResponseCreateManyProjectInputEnvelope
+    set?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    disconnect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    delete?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    connect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+    update?: ManagerResponseUpdateWithWhereUniqueWithoutProjectInput | ManagerResponseUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: ManagerResponseUpdateManyWithWhereWithoutProjectInput | ManagerResponseUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
   }
 
   export type ProjectCreateNestedManyWithoutUserInput = {
@@ -3818,6 +5356,20 @@ export namespace Prisma {
     update?: ProjectUpdateWithWhereUniqueWithoutUserInput | ProjectUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: ProjectUpdateManyWithWhereWithoutUserInput | ProjectUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
+  }
+
+  export type ProjectCreateNestedOneWithoutManagerResponseInput = {
+    create?: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutManagerResponseInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type ProjectUpdateOneRequiredWithoutManagerResponseNestedInput = {
+    create?: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutManagerResponseInput
+    upsert?: ProjectUpsertWithoutManagerResponseInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutManagerResponseInput, ProjectUpdateWithoutManagerResponseInput>, ProjectUncheckedUpdateWithoutManagerResponseInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -3945,6 +5497,57 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ManagerResponseCreateWithoutProjectInput = {
+    id?: string
+    frontendRoadMap: JsonNullValueInput | InputJsonValue
+    backendRoadMap: JsonNullValueInput | InputJsonValue
+    qaRoadmap: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ManagerResponseUncheckedCreateWithoutProjectInput = {
+    id?: string
+    frontendRoadMap: JsonNullValueInput | InputJsonValue
+    backendRoadMap: JsonNullValueInput | InputJsonValue
+    qaRoadmap: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ManagerResponseCreateOrConnectWithoutProjectInput = {
+    where: ManagerResponseWhereUniqueInput
+    create: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ManagerResponseCreateManyProjectInputEnvelope = {
+    data: ManagerResponseCreateManyProjectInput | ManagerResponseCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
 
   export type UserCreateWithoutProjectInput = {
     id?: string
@@ -3967,6 +5570,35 @@ export namespace Prisma {
   export type UserCreateOrConnectWithoutProjectInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ManagerResponseUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ManagerResponseWhereUniqueInput
+    update: XOR<ManagerResponseUpdateWithoutProjectInput, ManagerResponseUncheckedUpdateWithoutProjectInput>
+    create: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ManagerResponseUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ManagerResponseWhereUniqueInput
+    data: XOR<ManagerResponseUpdateWithoutProjectInput, ManagerResponseUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ManagerResponseUpdateManyWithWhereWithoutProjectInput = {
+    where: ManagerResponseScalarWhereInput
+    data: XOR<ManagerResponseUpdateManyMutationInput, ManagerResponseUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ManagerResponseScalarWhereInput = {
+    AND?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
+    OR?: ManagerResponseScalarWhereInput[]
+    NOT?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
+    id?: StringFilter<"ManagerResponse"> | string
+    frontendRoadMap?: JsonFilter<"ManagerResponse">
+    backendRoadMap?: JsonFilter<"ManagerResponse">
+    qaRoadmap?: JsonFilter<"ManagerResponse">
+    createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    projectId?: StringFilter<"ManagerResponse"> | string
   }
 
   export type UserUpsertWithoutProjectInput = {
@@ -4005,6 +5637,7 @@ export namespace Prisma {
     status: $Enums.Status
     createdAt?: Date | string
     updatedAt: Date | string
+    managerResponse?: ManagerResponseCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutUserInput = {
@@ -4014,6 +5647,7 @@ export namespace Prisma {
     status: $Enums.Status
     createdAt?: Date | string
     updatedAt: Date | string
+    managerResponse?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutUserInput = {
@@ -4055,6 +5689,98 @@ export namespace Prisma {
     userId?: StringFilter<"Project"> | string
   }
 
+  export type ProjectCreateWithoutManagerResponseInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt: Date | string
+    User: UserCreateNestedOneWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutManagerResponseInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt: Date | string
+    userId: string
+  }
+
+  export type ProjectCreateOrConnectWithoutManagerResponseInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
+  }
+
+  export type ProjectUpsertWithoutManagerResponseInput = {
+    update: XOR<ProjectUpdateWithoutManagerResponseInput, ProjectUncheckedUpdateWithoutManagerResponseInput>
+    create: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutManagerResponseInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutManagerResponseInput, ProjectUncheckedUpdateWithoutManagerResponseInput>
+  }
+
+  export type ProjectUpdateWithoutManagerResponseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutManagerResponseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ManagerResponseCreateManyProjectInput = {
+    id?: string
+    frontendRoadMap: JsonNullValueInput | InputJsonValue
+    backendRoadMap: JsonNullValueInput | InputJsonValue
+    qaRoadmap: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type ManagerResponseUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ManagerResponseUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ManagerResponseUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    frontendRoadMap?: JsonNullValueInput | InputJsonValue
+    backendRoadMap?: JsonNullValueInput | InputJsonValue
+    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ProjectCreateManyUserInput = {
     id?: string
     name: string
@@ -4071,6 +5797,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    managerResponse?: ManagerResponseUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutUserInput = {
@@ -4080,6 +5807,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    managerResponse?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutUserInput = {
