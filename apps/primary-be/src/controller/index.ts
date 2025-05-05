@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { prisma } from "@repo/db";
-import { WorkerAgent } from "@repo/ai";
+import { projectQueueProcessor } from "@repo/queue";
 
 export const createProject = async (req: Request, res: Response) => {
     const { name, description } = req.body;
@@ -14,19 +14,17 @@ export const createProject = async (req: Request, res: Response) => {
         })
 
         if(!user) {
-            res.status(404).json({
+            return res.status(404).json({
                 success: false,
                 message: 'User not found'
-            })
-            return;
+            });
         }
 
         if(!name) {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: 'Project name is required'
-            })
-            return;
+            });
         }
 
         const project = await prisma.project.create({
@@ -37,24 +35,22 @@ export const createProject = async (req: Request, res: Response) => {
                 userId,
                 createdAt: new Date(),
                 updatedAt: new Date(),
-
             }
-        })
+        });
         
-        res.status(201).json({
+        await projectQueueProcessor(project.id, description || '');
+        
+        return res.status(201).json({
             status: 'success',
             message: 'Project Created Successfully',
-            // data: {
-            //     project,
-            //     managerPrompt
-            // }
-        })
+            data: project
+        });
     } catch (error) {
         console.error("Error creating project:", error);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: (error as Error).message
-        })
+        });
     }
 }
 
