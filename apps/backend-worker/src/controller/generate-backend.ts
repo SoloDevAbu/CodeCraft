@@ -23,7 +23,7 @@ export const generateBackend = async (req: Request, res: Response) => {
 
         const roadmap = await prisma.managerResponse.findUnique({
             where: {
-                id: projectId
+                projectId
             },
             select: {
                 backendRoadMap: true,
@@ -31,7 +31,7 @@ export const generateBackend = async (req: Request, res: Response) => {
         })
         const history = await prisma.backendPrompt.findMany({
             where: {
-                id: projectId
+                projectId
             }
         })
 
