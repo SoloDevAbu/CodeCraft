@@ -20,9 +20,9 @@ export const generateQA = async (req: Request, res: Response) => {
             });
         }
 
-        const roadmap = await prisma.managerResponse.findUnique({
+        const roadmap = await prisma.managerResponse.findFirst({
             where: {
-                id: projectId
+                projectId: projectId
             },
             select: {
                 qaRoadmap: true,
@@ -31,7 +31,7 @@ export const generateQA = async (req: Request, res: Response) => {
 
         const history = await prisma.qAPrompt.findMany({
             where: {
-                projectId: projectId
+                projectId
             }
         });
 

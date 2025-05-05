@@ -24,7 +24,7 @@ export const createRoadmap = async (req: Request, res: Response) => {
 
         const history = await prisma.managerResponse.findMany({
             where: {
-                id: projectId
+                projectId
             }
         })
 

@@ -21,9 +21,9 @@ export const generateBackend = async (req: Request, res: Response) => {
             return;
         }
 
-        const roadmap = await prisma.managerResponse.findUnique({
+        const roadmap = await prisma.managerResponse.findFirst({
             where: {
-                projectId
+                projectId: projectId
             },
             select: {
                 backendRoadMap: true,
