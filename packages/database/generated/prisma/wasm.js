@@ -141,9 +141,45 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.ManagerResponseScalarFieldEnum = {
   id: 'id',
+  content: 'content',
+  prompt: 'prompt',
+  type: 'type',
   frontendRoadMap: 'frontendRoadMap',
   backendRoadMap: 'backendRoadMap',
   qaRoadmap: 'qaRoadmap',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId'
+};
+
+exports.Prisma.FrontendPromptScalarFieldEnum = {
+  id: 'id',
+  prompt: 'prompt',
+  managerPrompt: 'managerPrompt',
+  responseContent: 'responseContent',
+  type: 'type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId'
+};
+
+exports.Prisma.BackendPromptScalarFieldEnum = {
+  id: 'id',
+  prompt: 'prompt',
+  managerPrompt: 'managerPrompt',
+  responseContent: 'responseContent',
+  type: 'type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId'
+};
+
+exports.Prisma.QAPromptScalarFieldEnum = {
+  id: 'id',
+  prompt: 'prompt',
+  content: 'content',
+  responseContent: 'responseContent',
+  type: 'type',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   projectId: 'projectId'
@@ -154,7 +190,8 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.JsonNullValueInput = {
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull
 };
 
@@ -179,10 +216,36 @@ exports.Status = exports.$Enums.Status = {
   COMPLETED: 'COMPLETED'
 };
 
+exports.ManagerPromptType = exports.$Enums.ManagerPromptType = {
+  USER: 'USER',
+  SYSTEM: 'SYSTEM'
+};
+
+exports.FrontendPromptType = exports.$Enums.FrontendPromptType = {
+  MANAGER: 'MANAGER',
+  SYSTEM: 'SYSTEM',
+  USER: 'USER'
+};
+
+exports.BackendPromptType = exports.$Enums.BackendPromptType = {
+  MANAGER: 'MANAGER',
+  SYSTEM: 'SYSTEM',
+  USER: 'USER'
+};
+
+exports.QAPromptType = exports.$Enums.QAPromptType = {
+  MANAGER: 'MANAGER',
+  SYSTEM: 'SYSTEM',
+  USER: 'USER'
+};
+
 exports.Prisma.ModelName = {
   Project: 'Project',
   User: 'User',
-  ManagerResponse: 'ManagerResponse'
+  ManagerResponse: 'ManagerResponse',
+  FrontendPrompt: 'FrontendPrompt',
+  BackendPrompt: 'BackendPrompt',
+  QAPrompt: 'QAPrompt'
 };
 
 /**

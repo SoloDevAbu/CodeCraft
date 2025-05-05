@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -20,10 +14,14 @@ model Project {
   description     String?
   status          Status
   createdAt       DateTime          @default(now())
-  updatedAt       DateTime
+  updatedAt       DateTime          @updatedAt
   userId          String
-  managerResponse ManagerResponse[]
   User            User              @relation(fields: [userId], references: [id])
+  
+  managerResponses    ManagerResponse[]
+  frontendPrompts     FrontendPrompt[]
+  backendPrompts      BackendPrompt[]
+  qaPrompts           QAPrompt[]
 }
 
 model User {
@@ -32,7 +30,7 @@ model User {
   email     String    @unique
   password  String?
   createdAt DateTime  @default(now())
-  updatedAt DateTime
+  updatedAt DateTime  @updatedAt
   Project   Project[]
 }
 
@@ -42,13 +40,76 @@ enum Status {
   COMPLETED
 }
 
+// Enums for prompt types
+enum ManagerPromptType {
+  USER
+  SYSTEM
+}
+
+enum FrontendPromptType {
+  MANAGER
+  SYSTEM
+  USER
+}
+
+enum BackendPromptType {
+  MANAGER
+  SYSTEM
+  USER
+}
+
+enum QAPromptType {
+  MANAGER
+  SYSTEM
+  USER
+}
+
 model ManagerResponse {
-  id              String   @id @default(cuid())
-  frontendRoadMap Json
-  backendRoadMap  Json
-  qaRoadmap       Json
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime
+  id              String            @id @default(cuid())
+  content         String?           // The actual response content
+  prompt          String?           // The original prompt that generated this response
+  type            ManagerPromptType?
+  frontendRoadMap Json?             // Tasks for frontend agent
+  backendRoadMap  Json?             // Tasks for backend agent
+  qaRoadmap       Json?             // Tasks for QA agent
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
   projectId       String
-  project         Project  @relation(fields: [projectId], references: [id])
+  project         Project           @relation(fields: [projectId], references: [id])
+}
+
+model FrontendPrompt {
+  id              String             @id @default(cuid())
+  prompt          String?            // The original prompt sent to the frontend agent
+  managerPrompt   Json?              // Instructions from manager
+  responseContent String?            // The response from the frontend agent
+  type            FrontendPromptType
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  projectId       String
+  project         Project            @relation(fields: [projectId], references: [id])
+}
+
+model BackendPrompt {
+  id              String            @id @default(cuid())
+  prompt          String?           // The original prompt sent to the backend agent
+  managerPrompt   Json?             // Instructions from manager
+  responseContent String?           // The response from the backend agent
+  type            BackendPromptType
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  projectId       String
+  project         Project           @relation(fields: [projectId], references: [id])
+}
+
+model QAPrompt {
+  id              String        @id @default(cuid())
+  prompt          String?       // The original prompt sent to the QA agent
+  content         Json?         // Either the prompt content or response content
+  responseContent String?       // The response from the QA agent
+  type            QAPromptType
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  projectId       String
+  project         Project       @relation(fields: [projectId], references: [id])
 }

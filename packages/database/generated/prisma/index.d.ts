@@ -28,6 +28,21 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  * 
  */
 export type ManagerResponse = $Result.DefaultSelection<Prisma.$ManagerResponsePayload>
+/**
+ * Model FrontendPrompt
+ * 
+ */
+export type FrontendPrompt = $Result.DefaultSelection<Prisma.$FrontendPromptPayload>
+/**
+ * Model BackendPrompt
+ * 
+ */
+export type BackendPrompt = $Result.DefaultSelection<Prisma.$BackendPromptPayload>
+/**
+ * Model QAPrompt
+ * 
+ */
+export type QAPrompt = $Result.DefaultSelection<Prisma.$QAPromptPayload>
 
 /**
  * Enums
@@ -41,11 +56,62 @@ export namespace $Enums {
 
 export type Status = (typeof Status)[keyof typeof Status]
 
+
+export const ManagerPromptType: {
+  USER: 'USER',
+  SYSTEM: 'SYSTEM'
+};
+
+export type ManagerPromptType = (typeof ManagerPromptType)[keyof typeof ManagerPromptType]
+
+
+export const FrontendPromptType: {
+  MANAGER: 'MANAGER',
+  SYSTEM: 'SYSTEM',
+  USER: 'USER'
+};
+
+export type FrontendPromptType = (typeof FrontendPromptType)[keyof typeof FrontendPromptType]
+
+
+export const BackendPromptType: {
+  MANAGER: 'MANAGER',
+  SYSTEM: 'SYSTEM',
+  USER: 'USER'
+};
+
+export type BackendPromptType = (typeof BackendPromptType)[keyof typeof BackendPromptType]
+
+
+export const QAPromptType: {
+  MANAGER: 'MANAGER',
+  SYSTEM: 'SYSTEM',
+  USER: 'USER'
+};
+
+export type QAPromptType = (typeof QAPromptType)[keyof typeof QAPromptType]
+
 }
 
 export type Status = $Enums.Status
 
 export const Status: typeof $Enums.Status
+
+export type ManagerPromptType = $Enums.ManagerPromptType
+
+export const ManagerPromptType: typeof $Enums.ManagerPromptType
+
+export type FrontendPromptType = $Enums.FrontendPromptType
+
+export const FrontendPromptType: typeof $Enums.FrontendPromptType
+
+export type BackendPromptType = $Enums.BackendPromptType
+
+export const BackendPromptType: typeof $Enums.BackendPromptType
+
+export type QAPromptType = $Enums.QAPromptType
+
+export const QAPromptType: typeof $Enums.QAPromptType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -201,6 +267,36 @@ export class PrismaClient<
     * ```
     */
   get managerResponse(): Prisma.ManagerResponseDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.frontendPrompt`: Exposes CRUD operations for the **FrontendPrompt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FrontendPrompts
+    * const frontendPrompts = await prisma.frontendPrompt.findMany()
+    * ```
+    */
+  get frontendPrompt(): Prisma.FrontendPromptDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.backendPrompt`: Exposes CRUD operations for the **BackendPrompt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BackendPrompts
+    * const backendPrompts = await prisma.backendPrompt.findMany()
+    * ```
+    */
+  get backendPrompt(): Prisma.BackendPromptDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.qAPrompt`: Exposes CRUD operations for the **QAPrompt** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more QAPrompts
+    * const qAPrompts = await prisma.qAPrompt.findMany()
+    * ```
+    */
+  get qAPrompt(): Prisma.QAPromptDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -643,7 +739,10 @@ export namespace Prisma {
   export const ModelName: {
     Project: 'Project',
     User: 'User',
-    ManagerResponse: 'ManagerResponse'
+    ManagerResponse: 'ManagerResponse',
+    FrontendPrompt: 'FrontendPrompt',
+    BackendPrompt: 'BackendPrompt',
+    QAPrompt: 'QAPrompt'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -662,7 +761,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "project" | "user" | "managerResponse"
+      modelProps: "project" | "user" | "managerResponse" | "frontendPrompt" | "backendPrompt" | "qAPrompt"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -888,6 +987,228 @@ export namespace Prisma {
           }
         }
       }
+      FrontendPrompt: {
+        payload: Prisma.$FrontendPromptPayload<ExtArgs>
+        fields: Prisma.FrontendPromptFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FrontendPromptFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FrontendPromptFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>
+          }
+          findFirst: {
+            args: Prisma.FrontendPromptFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FrontendPromptFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>
+          }
+          findMany: {
+            args: Prisma.FrontendPromptFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>[]
+          }
+          create: {
+            args: Prisma.FrontendPromptCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>
+          }
+          createMany: {
+            args: Prisma.FrontendPromptCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FrontendPromptCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>[]
+          }
+          delete: {
+            args: Prisma.FrontendPromptDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>
+          }
+          update: {
+            args: Prisma.FrontendPromptUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>
+          }
+          deleteMany: {
+            args: Prisma.FrontendPromptDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FrontendPromptUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FrontendPromptUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>[]
+          }
+          upsert: {
+            args: Prisma.FrontendPromptUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FrontendPromptPayload>
+          }
+          aggregate: {
+            args: Prisma.FrontendPromptAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFrontendPrompt>
+          }
+          groupBy: {
+            args: Prisma.FrontendPromptGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FrontendPromptGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FrontendPromptCountArgs<ExtArgs>
+            result: $Utils.Optional<FrontendPromptCountAggregateOutputType> | number
+          }
+        }
+      }
+      BackendPrompt: {
+        payload: Prisma.$BackendPromptPayload<ExtArgs>
+        fields: Prisma.BackendPromptFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BackendPromptFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BackendPromptFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>
+          }
+          findFirst: {
+            args: Prisma.BackendPromptFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BackendPromptFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>
+          }
+          findMany: {
+            args: Prisma.BackendPromptFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>[]
+          }
+          create: {
+            args: Prisma.BackendPromptCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>
+          }
+          createMany: {
+            args: Prisma.BackendPromptCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BackendPromptCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>[]
+          }
+          delete: {
+            args: Prisma.BackendPromptDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>
+          }
+          update: {
+            args: Prisma.BackendPromptUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>
+          }
+          deleteMany: {
+            args: Prisma.BackendPromptDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BackendPromptUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BackendPromptUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>[]
+          }
+          upsert: {
+            args: Prisma.BackendPromptUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BackendPromptPayload>
+          }
+          aggregate: {
+            args: Prisma.BackendPromptAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBackendPrompt>
+          }
+          groupBy: {
+            args: Prisma.BackendPromptGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BackendPromptGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BackendPromptCountArgs<ExtArgs>
+            result: $Utils.Optional<BackendPromptCountAggregateOutputType> | number
+          }
+        }
+      }
+      QAPrompt: {
+        payload: Prisma.$QAPromptPayload<ExtArgs>
+        fields: Prisma.QAPromptFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.QAPromptFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.QAPromptFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>
+          }
+          findFirst: {
+            args: Prisma.QAPromptFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.QAPromptFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>
+          }
+          findMany: {
+            args: Prisma.QAPromptFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>[]
+          }
+          create: {
+            args: Prisma.QAPromptCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>
+          }
+          createMany: {
+            args: Prisma.QAPromptCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.QAPromptCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>[]
+          }
+          delete: {
+            args: Prisma.QAPromptDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>
+          }
+          update: {
+            args: Prisma.QAPromptUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>
+          }
+          deleteMany: {
+            args: Prisma.QAPromptDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.QAPromptUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.QAPromptUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>[]
+          }
+          upsert: {
+            args: Prisma.QAPromptUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$QAPromptPayload>
+          }
+          aggregate: {
+            args: Prisma.QAPromptAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateQAPrompt>
+          }
+          groupBy: {
+            args: Prisma.QAPromptGroupByArgs<ExtArgs>
+            result: $Utils.Optional<QAPromptGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.QAPromptCountArgs<ExtArgs>
+            result: $Utils.Optional<QAPromptCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -975,6 +1296,9 @@ export namespace Prisma {
     project?: ProjectOmit
     user?: UserOmit
     managerResponse?: ManagerResponseOmit
+    frontendPrompt?: FrontendPromptOmit
+    backendPrompt?: BackendPromptOmit
+    qAPrompt?: QAPromptOmit
   }
 
   /* Types for Logging */
@@ -1069,11 +1393,17 @@ export namespace Prisma {
    */
 
   export type ProjectCountOutputType = {
-    managerResponse: number
+    managerResponses: number
+    frontendPrompts: number
+    backendPrompts: number
+    qaPrompts: number
   }
 
   export type ProjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    managerResponse?: boolean | ProjectCountOutputTypeCountManagerResponseArgs
+    managerResponses?: boolean | ProjectCountOutputTypeCountManagerResponsesArgs
+    frontendPrompts?: boolean | ProjectCountOutputTypeCountFrontendPromptsArgs
+    backendPrompts?: boolean | ProjectCountOutputTypeCountBackendPromptsArgs
+    qaPrompts?: boolean | ProjectCountOutputTypeCountQaPromptsArgs
   }
 
   // Custom InputTypes
@@ -1090,8 +1420,29 @@ export namespace Prisma {
   /**
    * ProjectCountOutputType without action
    */
-  export type ProjectCountOutputTypeCountManagerResponseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProjectCountOutputTypeCountManagerResponsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ManagerResponseWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountFrontendPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FrontendPromptWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountBackendPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BackendPromptWhereInput
+  }
+
+  /**
+   * ProjectCountOutputType without action
+   */
+  export type ProjectCountOutputTypeCountQaPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QAPromptWhereInput
   }
 
 
@@ -1310,8 +1661,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
-    managerResponse?: boolean | Project$managerResponseArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
+    managerResponses?: boolean | Project$managerResponsesArgs<ExtArgs>
+    frontendPrompts?: boolean | Project$frontendPromptsArgs<ExtArgs>
+    backendPrompts?: boolean | Project$backendPromptsArgs<ExtArgs>
+    qaPrompts?: boolean | Project$qaPromptsArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -1349,8 +1703,11 @@ export namespace Prisma {
 
   export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "status" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    managerResponse?: boolean | Project$managerResponseArgs<ExtArgs>
     User?: boolean | UserDefaultArgs<ExtArgs>
+    managerResponses?: boolean | Project$managerResponsesArgs<ExtArgs>
+    frontendPrompts?: boolean | Project$frontendPromptsArgs<ExtArgs>
+    backendPrompts?: boolean | Project$backendPromptsArgs<ExtArgs>
+    qaPrompts?: boolean | Project$qaPromptsArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1363,8 +1720,11 @@ export namespace Prisma {
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
     objects: {
-      managerResponse: Prisma.$ManagerResponsePayload<ExtArgs>[]
       User: Prisma.$UserPayload<ExtArgs>
+      managerResponses: Prisma.$ManagerResponsePayload<ExtArgs>[]
+      frontendPrompts: Prisma.$FrontendPromptPayload<ExtArgs>[]
+      backendPrompts: Prisma.$BackendPromptPayload<ExtArgs>[]
+      qaPrompts: Prisma.$QAPromptPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1768,8 +2128,11 @@ export namespace Prisma {
    */
   export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    managerResponse<T extends Project$managerResponseArgs<ExtArgs> = {}>(args?: Subset<T, Project$managerResponseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    managerResponses<T extends Project$managerResponsesArgs<ExtArgs> = {}>(args?: Subset<T, Project$managerResponsesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ManagerResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    frontendPrompts<T extends Project$frontendPromptsArgs<ExtArgs> = {}>(args?: Subset<T, Project$frontendPromptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    backendPrompts<T extends Project$backendPromptsArgs<ExtArgs> = {}>(args?: Subset<T, Project$backendPromptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    qaPrompts<T extends Project$qaPromptsArgs<ExtArgs> = {}>(args?: Subset<T, Project$qaPromptsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2202,9 +2565,9 @@ export namespace Prisma {
   }
 
   /**
-   * Project.managerResponse
+   * Project.managerResponses
    */
-  export type Project$managerResponseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Project$managerResponsesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the ManagerResponse
      */
@@ -2223,6 +2586,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ManagerResponseScalarFieldEnum | ManagerResponseScalarFieldEnum[]
+  }
+
+  /**
+   * Project.frontendPrompts
+   */
+  export type Project$frontendPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    where?: FrontendPromptWhereInput
+    orderBy?: FrontendPromptOrderByWithRelationInput | FrontendPromptOrderByWithRelationInput[]
+    cursor?: FrontendPromptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FrontendPromptScalarFieldEnum | FrontendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * Project.backendPrompts
+   */
+  export type Project$backendPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    where?: BackendPromptWhereInput
+    orderBy?: BackendPromptOrderByWithRelationInput | BackendPromptOrderByWithRelationInput[]
+    cursor?: BackendPromptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BackendPromptScalarFieldEnum | BackendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * Project.qaPrompts
+   */
+  export type Project$qaPromptsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    where?: QAPromptWhereInput
+    orderBy?: QAPromptOrderByWithRelationInput | QAPromptOrderByWithRelationInput[]
+    cursor?: QAPromptWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: QAPromptScalarFieldEnum | QAPromptScalarFieldEnum[]
   }
 
   /**
@@ -3339,6 +3774,9 @@ export namespace Prisma {
 
   export type ManagerResponseMinAggregateOutputType = {
     id: string | null
+    content: string | null
+    prompt: string | null
+    type: $Enums.ManagerPromptType | null
     createdAt: Date | null
     updatedAt: Date | null
     projectId: string | null
@@ -3346,6 +3784,9 @@ export namespace Prisma {
 
   export type ManagerResponseMaxAggregateOutputType = {
     id: string | null
+    content: string | null
+    prompt: string | null
+    type: $Enums.ManagerPromptType | null
     createdAt: Date | null
     updatedAt: Date | null
     projectId: string | null
@@ -3353,6 +3794,9 @@ export namespace Prisma {
 
   export type ManagerResponseCountAggregateOutputType = {
     id: number
+    content: number
+    prompt: number
+    type: number
     frontendRoadMap: number
     backendRoadMap: number
     qaRoadmap: number
@@ -3365,6 +3809,9 @@ export namespace Prisma {
 
   export type ManagerResponseMinAggregateInputType = {
     id?: true
+    content?: true
+    prompt?: true
+    type?: true
     createdAt?: true
     updatedAt?: true
     projectId?: true
@@ -3372,6 +3819,9 @@ export namespace Prisma {
 
   export type ManagerResponseMaxAggregateInputType = {
     id?: true
+    content?: true
+    prompt?: true
+    type?: true
     createdAt?: true
     updatedAt?: true
     projectId?: true
@@ -3379,6 +3829,9 @@ export namespace Prisma {
 
   export type ManagerResponseCountAggregateInputType = {
     id?: true
+    content?: true
+    prompt?: true
+    type?: true
     frontendRoadMap?: true
     backendRoadMap?: true
     qaRoadmap?: true
@@ -3462,9 +3915,12 @@ export namespace Prisma {
 
   export type ManagerResponseGroupByOutputType = {
     id: string
-    frontendRoadMap: JsonValue
-    backendRoadMap: JsonValue
-    qaRoadmap: JsonValue
+    content: string | null
+    prompt: string | null
+    type: $Enums.ManagerPromptType | null
+    frontendRoadMap: JsonValue | null
+    backendRoadMap: JsonValue | null
+    qaRoadmap: JsonValue | null
     createdAt: Date
     updatedAt: Date
     projectId: string
@@ -3489,6 +3945,9 @@ export namespace Prisma {
 
   export type ManagerResponseSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    content?: boolean
+    prompt?: boolean
+    type?: boolean
     frontendRoadMap?: boolean
     backendRoadMap?: boolean
     qaRoadmap?: boolean
@@ -3500,6 +3959,9 @@ export namespace Prisma {
 
   export type ManagerResponseSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    content?: boolean
+    prompt?: boolean
+    type?: boolean
     frontendRoadMap?: boolean
     backendRoadMap?: boolean
     qaRoadmap?: boolean
@@ -3511,6 +3973,9 @@ export namespace Prisma {
 
   export type ManagerResponseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    content?: boolean
+    prompt?: boolean
+    type?: boolean
     frontendRoadMap?: boolean
     backendRoadMap?: boolean
     qaRoadmap?: boolean
@@ -3522,6 +3987,9 @@ export namespace Prisma {
 
   export type ManagerResponseSelectScalar = {
     id?: boolean
+    content?: boolean
+    prompt?: boolean
+    type?: boolean
     frontendRoadMap?: boolean
     backendRoadMap?: boolean
     qaRoadmap?: boolean
@@ -3530,7 +3998,7 @@ export namespace Prisma {
     projectId?: boolean
   }
 
-  export type ManagerResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "frontendRoadMap" | "backendRoadMap" | "qaRoadmap" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["managerResponse"]>
+  export type ManagerResponseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "prompt" | "type" | "frontendRoadMap" | "backendRoadMap" | "qaRoadmap" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["managerResponse"]>
   export type ManagerResponseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }
@@ -3548,9 +4016,12 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      frontendRoadMap: Prisma.JsonValue
-      backendRoadMap: Prisma.JsonValue
-      qaRoadmap: Prisma.JsonValue
+      content: string | null
+      prompt: string | null
+      type: $Enums.ManagerPromptType | null
+      frontendRoadMap: Prisma.JsonValue | null
+      backendRoadMap: Prisma.JsonValue | null
+      qaRoadmap: Prisma.JsonValue | null
       createdAt: Date
       updatedAt: Date
       projectId: string
@@ -3979,6 +4450,9 @@ export namespace Prisma {
    */
   interface ManagerResponseFieldRefs {
     readonly id: FieldRef<"ManagerResponse", 'String'>
+    readonly content: FieldRef<"ManagerResponse", 'String'>
+    readonly prompt: FieldRef<"ManagerResponse", 'String'>
+    readonly type: FieldRef<"ManagerResponse", 'ManagerPromptType'>
     readonly frontendRoadMap: FieldRef<"ManagerResponse", 'Json'>
     readonly backendRoadMap: FieldRef<"ManagerResponse", 'Json'>
     readonly qaRoadmap: FieldRef<"ManagerResponse", 'Json'>
@@ -4400,6 +4874,3285 @@ export namespace Prisma {
 
 
   /**
+   * Model FrontendPrompt
+   */
+
+  export type AggregateFrontendPrompt = {
+    _count: FrontendPromptCountAggregateOutputType | null
+    _min: FrontendPromptMinAggregateOutputType | null
+    _max: FrontendPromptMaxAggregateOutputType | null
+  }
+
+  export type FrontendPromptMinAggregateOutputType = {
+    id: string | null
+    prompt: string | null
+    responseContent: string | null
+    type: $Enums.FrontendPromptType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type FrontendPromptMaxAggregateOutputType = {
+    id: string | null
+    prompt: string | null
+    responseContent: string | null
+    type: $Enums.FrontendPromptType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type FrontendPromptCountAggregateOutputType = {
+    id: number
+    prompt: number
+    managerPrompt: number
+    responseContent: number
+    type: number
+    createdAt: number
+    updatedAt: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type FrontendPromptMinAggregateInputType = {
+    id?: true
+    prompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type FrontendPromptMaxAggregateInputType = {
+    id?: true
+    prompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type FrontendPromptCountAggregateInputType = {
+    id?: true
+    prompt?: true
+    managerPrompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type FrontendPromptAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FrontendPrompt to aggregate.
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FrontendPrompts to fetch.
+     */
+    orderBy?: FrontendPromptOrderByWithRelationInput | FrontendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FrontendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FrontendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FrontendPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FrontendPrompts
+    **/
+    _count?: true | FrontendPromptCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FrontendPromptMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FrontendPromptMaxAggregateInputType
+  }
+
+  export type GetFrontendPromptAggregateType<T extends FrontendPromptAggregateArgs> = {
+        [P in keyof T & keyof AggregateFrontendPrompt]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFrontendPrompt[P]>
+      : GetScalarType<T[P], AggregateFrontendPrompt[P]>
+  }
+
+
+
+
+  export type FrontendPromptGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FrontendPromptWhereInput
+    orderBy?: FrontendPromptOrderByWithAggregationInput | FrontendPromptOrderByWithAggregationInput[]
+    by: FrontendPromptScalarFieldEnum[] | FrontendPromptScalarFieldEnum
+    having?: FrontendPromptScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FrontendPromptCountAggregateInputType | true
+    _min?: FrontendPromptMinAggregateInputType
+    _max?: FrontendPromptMaxAggregateInputType
+  }
+
+  export type FrontendPromptGroupByOutputType = {
+    id: string
+    prompt: string | null
+    managerPrompt: JsonValue | null
+    responseContent: string | null
+    type: $Enums.FrontendPromptType
+    createdAt: Date
+    updatedAt: Date
+    projectId: string
+    _count: FrontendPromptCountAggregateOutputType | null
+    _min: FrontendPromptMinAggregateOutputType | null
+    _max: FrontendPromptMaxAggregateOutputType | null
+  }
+
+  type GetFrontendPromptGroupByPayload<T extends FrontendPromptGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FrontendPromptGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FrontendPromptGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FrontendPromptGroupByOutputType[P]>
+            : GetScalarType<T[P], FrontendPromptGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FrontendPromptSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["frontendPrompt"]>
+
+  export type FrontendPromptSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["frontendPrompt"]>
+
+  export type FrontendPromptSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["frontendPrompt"]>
+
+  export type FrontendPromptSelectScalar = {
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+  }
+
+  export type FrontendPromptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "prompt" | "managerPrompt" | "responseContent" | "type" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["frontendPrompt"]>
+  export type FrontendPromptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type FrontendPromptIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type FrontendPromptIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $FrontendPromptPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FrontendPrompt"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      prompt: string | null
+      managerPrompt: Prisma.JsonValue | null
+      responseContent: string | null
+      type: $Enums.FrontendPromptType
+      createdAt: Date
+      updatedAt: Date
+      projectId: string
+    }, ExtArgs["result"]["frontendPrompt"]>
+    composites: {}
+  }
+
+  type FrontendPromptGetPayload<S extends boolean | null | undefined | FrontendPromptDefaultArgs> = $Result.GetResult<Prisma.$FrontendPromptPayload, S>
+
+  type FrontendPromptCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FrontendPromptFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FrontendPromptCountAggregateInputType | true
+    }
+
+  export interface FrontendPromptDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FrontendPrompt'], meta: { name: 'FrontendPrompt' } }
+    /**
+     * Find zero or one FrontendPrompt that matches the filter.
+     * @param {FrontendPromptFindUniqueArgs} args - Arguments to find a FrontendPrompt
+     * @example
+     * // Get one FrontendPrompt
+     * const frontendPrompt = await prisma.frontendPrompt.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FrontendPromptFindUniqueArgs>(args: SelectSubset<T, FrontendPromptFindUniqueArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FrontendPrompt that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FrontendPromptFindUniqueOrThrowArgs} args - Arguments to find a FrontendPrompt
+     * @example
+     * // Get one FrontendPrompt
+     * const frontendPrompt = await prisma.frontendPrompt.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FrontendPromptFindUniqueOrThrowArgs>(args: SelectSubset<T, FrontendPromptFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FrontendPrompt that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptFindFirstArgs} args - Arguments to find a FrontendPrompt
+     * @example
+     * // Get one FrontendPrompt
+     * const frontendPrompt = await prisma.frontendPrompt.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FrontendPromptFindFirstArgs>(args?: SelectSubset<T, FrontendPromptFindFirstArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FrontendPrompt that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptFindFirstOrThrowArgs} args - Arguments to find a FrontendPrompt
+     * @example
+     * // Get one FrontendPrompt
+     * const frontendPrompt = await prisma.frontendPrompt.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FrontendPromptFindFirstOrThrowArgs>(args?: SelectSubset<T, FrontendPromptFindFirstOrThrowArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FrontendPrompts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FrontendPrompts
+     * const frontendPrompts = await prisma.frontendPrompt.findMany()
+     * 
+     * // Get first 10 FrontendPrompts
+     * const frontendPrompts = await prisma.frontendPrompt.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const frontendPromptWithIdOnly = await prisma.frontendPrompt.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FrontendPromptFindManyArgs>(args?: SelectSubset<T, FrontendPromptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FrontendPrompt.
+     * @param {FrontendPromptCreateArgs} args - Arguments to create a FrontendPrompt.
+     * @example
+     * // Create one FrontendPrompt
+     * const FrontendPrompt = await prisma.frontendPrompt.create({
+     *   data: {
+     *     // ... data to create a FrontendPrompt
+     *   }
+     * })
+     * 
+     */
+    create<T extends FrontendPromptCreateArgs>(args: SelectSubset<T, FrontendPromptCreateArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FrontendPrompts.
+     * @param {FrontendPromptCreateManyArgs} args - Arguments to create many FrontendPrompts.
+     * @example
+     * // Create many FrontendPrompts
+     * const frontendPrompt = await prisma.frontendPrompt.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FrontendPromptCreateManyArgs>(args?: SelectSubset<T, FrontendPromptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FrontendPrompts and returns the data saved in the database.
+     * @param {FrontendPromptCreateManyAndReturnArgs} args - Arguments to create many FrontendPrompts.
+     * @example
+     * // Create many FrontendPrompts
+     * const frontendPrompt = await prisma.frontendPrompt.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FrontendPrompts and only return the `id`
+     * const frontendPromptWithIdOnly = await prisma.frontendPrompt.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FrontendPromptCreateManyAndReturnArgs>(args?: SelectSubset<T, FrontendPromptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FrontendPrompt.
+     * @param {FrontendPromptDeleteArgs} args - Arguments to delete one FrontendPrompt.
+     * @example
+     * // Delete one FrontendPrompt
+     * const FrontendPrompt = await prisma.frontendPrompt.delete({
+     *   where: {
+     *     // ... filter to delete one FrontendPrompt
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FrontendPromptDeleteArgs>(args: SelectSubset<T, FrontendPromptDeleteArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FrontendPrompt.
+     * @param {FrontendPromptUpdateArgs} args - Arguments to update one FrontendPrompt.
+     * @example
+     * // Update one FrontendPrompt
+     * const frontendPrompt = await prisma.frontendPrompt.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FrontendPromptUpdateArgs>(args: SelectSubset<T, FrontendPromptUpdateArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FrontendPrompts.
+     * @param {FrontendPromptDeleteManyArgs} args - Arguments to filter FrontendPrompts to delete.
+     * @example
+     * // Delete a few FrontendPrompts
+     * const { count } = await prisma.frontendPrompt.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FrontendPromptDeleteManyArgs>(args?: SelectSubset<T, FrontendPromptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FrontendPrompts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FrontendPrompts
+     * const frontendPrompt = await prisma.frontendPrompt.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FrontendPromptUpdateManyArgs>(args: SelectSubset<T, FrontendPromptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FrontendPrompts and returns the data updated in the database.
+     * @param {FrontendPromptUpdateManyAndReturnArgs} args - Arguments to update many FrontendPrompts.
+     * @example
+     * // Update many FrontendPrompts
+     * const frontendPrompt = await prisma.frontendPrompt.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FrontendPrompts and only return the `id`
+     * const frontendPromptWithIdOnly = await prisma.frontendPrompt.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FrontendPromptUpdateManyAndReturnArgs>(args: SelectSubset<T, FrontendPromptUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FrontendPrompt.
+     * @param {FrontendPromptUpsertArgs} args - Arguments to update or create a FrontendPrompt.
+     * @example
+     * // Update or create a FrontendPrompt
+     * const frontendPrompt = await prisma.frontendPrompt.upsert({
+     *   create: {
+     *     // ... data to create a FrontendPrompt
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FrontendPrompt we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FrontendPromptUpsertArgs>(args: SelectSubset<T, FrontendPromptUpsertArgs<ExtArgs>>): Prisma__FrontendPromptClient<$Result.GetResult<Prisma.$FrontendPromptPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FrontendPrompts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptCountArgs} args - Arguments to filter FrontendPrompts to count.
+     * @example
+     * // Count the number of FrontendPrompts
+     * const count = await prisma.frontendPrompt.count({
+     *   where: {
+     *     // ... the filter for the FrontendPrompts we want to count
+     *   }
+     * })
+    **/
+    count<T extends FrontendPromptCountArgs>(
+      args?: Subset<T, FrontendPromptCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FrontendPromptCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FrontendPrompt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FrontendPromptAggregateArgs>(args: Subset<T, FrontendPromptAggregateArgs>): Prisma.PrismaPromise<GetFrontendPromptAggregateType<T>>
+
+    /**
+     * Group by FrontendPrompt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FrontendPromptGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FrontendPromptGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FrontendPromptGroupByArgs['orderBy'] }
+        : { orderBy?: FrontendPromptGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FrontendPromptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFrontendPromptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FrontendPrompt model
+   */
+  readonly fields: FrontendPromptFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FrontendPrompt.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FrontendPromptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FrontendPrompt model
+   */
+  interface FrontendPromptFieldRefs {
+    readonly id: FieldRef<"FrontendPrompt", 'String'>
+    readonly prompt: FieldRef<"FrontendPrompt", 'String'>
+    readonly managerPrompt: FieldRef<"FrontendPrompt", 'Json'>
+    readonly responseContent: FieldRef<"FrontendPrompt", 'String'>
+    readonly type: FieldRef<"FrontendPrompt", 'FrontendPromptType'>
+    readonly createdAt: FieldRef<"FrontendPrompt", 'DateTime'>
+    readonly updatedAt: FieldRef<"FrontendPrompt", 'DateTime'>
+    readonly projectId: FieldRef<"FrontendPrompt", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FrontendPrompt findUnique
+   */
+  export type FrontendPromptFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which FrontendPrompt to fetch.
+     */
+    where: FrontendPromptWhereUniqueInput
+  }
+
+  /**
+   * FrontendPrompt findUniqueOrThrow
+   */
+  export type FrontendPromptFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which FrontendPrompt to fetch.
+     */
+    where: FrontendPromptWhereUniqueInput
+  }
+
+  /**
+   * FrontendPrompt findFirst
+   */
+  export type FrontendPromptFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which FrontendPrompt to fetch.
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FrontendPrompts to fetch.
+     */
+    orderBy?: FrontendPromptOrderByWithRelationInput | FrontendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FrontendPrompts.
+     */
+    cursor?: FrontendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FrontendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FrontendPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FrontendPrompts.
+     */
+    distinct?: FrontendPromptScalarFieldEnum | FrontendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * FrontendPrompt findFirstOrThrow
+   */
+  export type FrontendPromptFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which FrontendPrompt to fetch.
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FrontendPrompts to fetch.
+     */
+    orderBy?: FrontendPromptOrderByWithRelationInput | FrontendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FrontendPrompts.
+     */
+    cursor?: FrontendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FrontendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FrontendPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FrontendPrompts.
+     */
+    distinct?: FrontendPromptScalarFieldEnum | FrontendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * FrontendPrompt findMany
+   */
+  export type FrontendPromptFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which FrontendPrompts to fetch.
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FrontendPrompts to fetch.
+     */
+    orderBy?: FrontendPromptOrderByWithRelationInput | FrontendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FrontendPrompts.
+     */
+    cursor?: FrontendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FrontendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FrontendPrompts.
+     */
+    skip?: number
+    distinct?: FrontendPromptScalarFieldEnum | FrontendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * FrontendPrompt create
+   */
+  export type FrontendPromptCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FrontendPrompt.
+     */
+    data: XOR<FrontendPromptCreateInput, FrontendPromptUncheckedCreateInput>
+  }
+
+  /**
+   * FrontendPrompt createMany
+   */
+  export type FrontendPromptCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FrontendPrompts.
+     */
+    data: FrontendPromptCreateManyInput | FrontendPromptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FrontendPrompt createManyAndReturn
+   */
+  export type FrontendPromptCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * The data used to create many FrontendPrompts.
+     */
+    data: FrontendPromptCreateManyInput | FrontendPromptCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FrontendPrompt update
+   */
+  export type FrontendPromptUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FrontendPrompt.
+     */
+    data: XOR<FrontendPromptUpdateInput, FrontendPromptUncheckedUpdateInput>
+    /**
+     * Choose, which FrontendPrompt to update.
+     */
+    where: FrontendPromptWhereUniqueInput
+  }
+
+  /**
+   * FrontendPrompt updateMany
+   */
+  export type FrontendPromptUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FrontendPrompts.
+     */
+    data: XOR<FrontendPromptUpdateManyMutationInput, FrontendPromptUncheckedUpdateManyInput>
+    /**
+     * Filter which FrontendPrompts to update
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * Limit how many FrontendPrompts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FrontendPrompt updateManyAndReturn
+   */
+  export type FrontendPromptUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * The data used to update FrontendPrompts.
+     */
+    data: XOR<FrontendPromptUpdateManyMutationInput, FrontendPromptUncheckedUpdateManyInput>
+    /**
+     * Filter which FrontendPrompts to update
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * Limit how many FrontendPrompts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FrontendPrompt upsert
+   */
+  export type FrontendPromptUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FrontendPrompt to update in case it exists.
+     */
+    where: FrontendPromptWhereUniqueInput
+    /**
+     * In case the FrontendPrompt found by the `where` argument doesn't exist, create a new FrontendPrompt with this data.
+     */
+    create: XOR<FrontendPromptCreateInput, FrontendPromptUncheckedCreateInput>
+    /**
+     * In case the FrontendPrompt was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FrontendPromptUpdateInput, FrontendPromptUncheckedUpdateInput>
+  }
+
+  /**
+   * FrontendPrompt delete
+   */
+  export type FrontendPromptDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+    /**
+     * Filter which FrontendPrompt to delete.
+     */
+    where: FrontendPromptWhereUniqueInput
+  }
+
+  /**
+   * FrontendPrompt deleteMany
+   */
+  export type FrontendPromptDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FrontendPrompts to delete
+     */
+    where?: FrontendPromptWhereInput
+    /**
+     * Limit how many FrontendPrompts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FrontendPrompt without action
+   */
+  export type FrontendPromptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FrontendPrompt
+     */
+    select?: FrontendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FrontendPrompt
+     */
+    omit?: FrontendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FrontendPromptInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BackendPrompt
+   */
+
+  export type AggregateBackendPrompt = {
+    _count: BackendPromptCountAggregateOutputType | null
+    _min: BackendPromptMinAggregateOutputType | null
+    _max: BackendPromptMaxAggregateOutputType | null
+  }
+
+  export type BackendPromptMinAggregateOutputType = {
+    id: string | null
+    prompt: string | null
+    responseContent: string | null
+    type: $Enums.BackendPromptType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type BackendPromptMaxAggregateOutputType = {
+    id: string | null
+    prompt: string | null
+    responseContent: string | null
+    type: $Enums.BackendPromptType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type BackendPromptCountAggregateOutputType = {
+    id: number
+    prompt: number
+    managerPrompt: number
+    responseContent: number
+    type: number
+    createdAt: number
+    updatedAt: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type BackendPromptMinAggregateInputType = {
+    id?: true
+    prompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type BackendPromptMaxAggregateInputType = {
+    id?: true
+    prompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type BackendPromptCountAggregateInputType = {
+    id?: true
+    prompt?: true
+    managerPrompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type BackendPromptAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BackendPrompt to aggregate.
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BackendPrompts to fetch.
+     */
+    orderBy?: BackendPromptOrderByWithRelationInput | BackendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BackendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BackendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BackendPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BackendPrompts
+    **/
+    _count?: true | BackendPromptCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BackendPromptMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BackendPromptMaxAggregateInputType
+  }
+
+  export type GetBackendPromptAggregateType<T extends BackendPromptAggregateArgs> = {
+        [P in keyof T & keyof AggregateBackendPrompt]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBackendPrompt[P]>
+      : GetScalarType<T[P], AggregateBackendPrompt[P]>
+  }
+
+
+
+
+  export type BackendPromptGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BackendPromptWhereInput
+    orderBy?: BackendPromptOrderByWithAggregationInput | BackendPromptOrderByWithAggregationInput[]
+    by: BackendPromptScalarFieldEnum[] | BackendPromptScalarFieldEnum
+    having?: BackendPromptScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BackendPromptCountAggregateInputType | true
+    _min?: BackendPromptMinAggregateInputType
+    _max?: BackendPromptMaxAggregateInputType
+  }
+
+  export type BackendPromptGroupByOutputType = {
+    id: string
+    prompt: string | null
+    managerPrompt: JsonValue | null
+    responseContent: string | null
+    type: $Enums.BackendPromptType
+    createdAt: Date
+    updatedAt: Date
+    projectId: string
+    _count: BackendPromptCountAggregateOutputType | null
+    _min: BackendPromptMinAggregateOutputType | null
+    _max: BackendPromptMaxAggregateOutputType | null
+  }
+
+  type GetBackendPromptGroupByPayload<T extends BackendPromptGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BackendPromptGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BackendPromptGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BackendPromptGroupByOutputType[P]>
+            : GetScalarType<T[P], BackendPromptGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BackendPromptSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["backendPrompt"]>
+
+  export type BackendPromptSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["backendPrompt"]>
+
+  export type BackendPromptSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["backendPrompt"]>
+
+  export type BackendPromptSelectScalar = {
+    id?: boolean
+    prompt?: boolean
+    managerPrompt?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+  }
+
+  export type BackendPromptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "prompt" | "managerPrompt" | "responseContent" | "type" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["backendPrompt"]>
+  export type BackendPromptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type BackendPromptIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type BackendPromptIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $BackendPromptPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BackendPrompt"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      prompt: string | null
+      managerPrompt: Prisma.JsonValue | null
+      responseContent: string | null
+      type: $Enums.BackendPromptType
+      createdAt: Date
+      updatedAt: Date
+      projectId: string
+    }, ExtArgs["result"]["backendPrompt"]>
+    composites: {}
+  }
+
+  type BackendPromptGetPayload<S extends boolean | null | undefined | BackendPromptDefaultArgs> = $Result.GetResult<Prisma.$BackendPromptPayload, S>
+
+  type BackendPromptCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BackendPromptFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BackendPromptCountAggregateInputType | true
+    }
+
+  export interface BackendPromptDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BackendPrompt'], meta: { name: 'BackendPrompt' } }
+    /**
+     * Find zero or one BackendPrompt that matches the filter.
+     * @param {BackendPromptFindUniqueArgs} args - Arguments to find a BackendPrompt
+     * @example
+     * // Get one BackendPrompt
+     * const backendPrompt = await prisma.backendPrompt.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BackendPromptFindUniqueArgs>(args: SelectSubset<T, BackendPromptFindUniqueArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BackendPrompt that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BackendPromptFindUniqueOrThrowArgs} args - Arguments to find a BackendPrompt
+     * @example
+     * // Get one BackendPrompt
+     * const backendPrompt = await prisma.backendPrompt.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BackendPromptFindUniqueOrThrowArgs>(args: SelectSubset<T, BackendPromptFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BackendPrompt that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptFindFirstArgs} args - Arguments to find a BackendPrompt
+     * @example
+     * // Get one BackendPrompt
+     * const backendPrompt = await prisma.backendPrompt.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BackendPromptFindFirstArgs>(args?: SelectSubset<T, BackendPromptFindFirstArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BackendPrompt that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptFindFirstOrThrowArgs} args - Arguments to find a BackendPrompt
+     * @example
+     * // Get one BackendPrompt
+     * const backendPrompt = await prisma.backendPrompt.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BackendPromptFindFirstOrThrowArgs>(args?: SelectSubset<T, BackendPromptFindFirstOrThrowArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BackendPrompts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BackendPrompts
+     * const backendPrompts = await prisma.backendPrompt.findMany()
+     * 
+     * // Get first 10 BackendPrompts
+     * const backendPrompts = await prisma.backendPrompt.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const backendPromptWithIdOnly = await prisma.backendPrompt.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BackendPromptFindManyArgs>(args?: SelectSubset<T, BackendPromptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BackendPrompt.
+     * @param {BackendPromptCreateArgs} args - Arguments to create a BackendPrompt.
+     * @example
+     * // Create one BackendPrompt
+     * const BackendPrompt = await prisma.backendPrompt.create({
+     *   data: {
+     *     // ... data to create a BackendPrompt
+     *   }
+     * })
+     * 
+     */
+    create<T extends BackendPromptCreateArgs>(args: SelectSubset<T, BackendPromptCreateArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BackendPrompts.
+     * @param {BackendPromptCreateManyArgs} args - Arguments to create many BackendPrompts.
+     * @example
+     * // Create many BackendPrompts
+     * const backendPrompt = await prisma.backendPrompt.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BackendPromptCreateManyArgs>(args?: SelectSubset<T, BackendPromptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BackendPrompts and returns the data saved in the database.
+     * @param {BackendPromptCreateManyAndReturnArgs} args - Arguments to create many BackendPrompts.
+     * @example
+     * // Create many BackendPrompts
+     * const backendPrompt = await prisma.backendPrompt.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BackendPrompts and only return the `id`
+     * const backendPromptWithIdOnly = await prisma.backendPrompt.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BackendPromptCreateManyAndReturnArgs>(args?: SelectSubset<T, BackendPromptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BackendPrompt.
+     * @param {BackendPromptDeleteArgs} args - Arguments to delete one BackendPrompt.
+     * @example
+     * // Delete one BackendPrompt
+     * const BackendPrompt = await prisma.backendPrompt.delete({
+     *   where: {
+     *     // ... filter to delete one BackendPrompt
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BackendPromptDeleteArgs>(args: SelectSubset<T, BackendPromptDeleteArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BackendPrompt.
+     * @param {BackendPromptUpdateArgs} args - Arguments to update one BackendPrompt.
+     * @example
+     * // Update one BackendPrompt
+     * const backendPrompt = await prisma.backendPrompt.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BackendPromptUpdateArgs>(args: SelectSubset<T, BackendPromptUpdateArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BackendPrompts.
+     * @param {BackendPromptDeleteManyArgs} args - Arguments to filter BackendPrompts to delete.
+     * @example
+     * // Delete a few BackendPrompts
+     * const { count } = await prisma.backendPrompt.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BackendPromptDeleteManyArgs>(args?: SelectSubset<T, BackendPromptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BackendPrompts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BackendPrompts
+     * const backendPrompt = await prisma.backendPrompt.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BackendPromptUpdateManyArgs>(args: SelectSubset<T, BackendPromptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BackendPrompts and returns the data updated in the database.
+     * @param {BackendPromptUpdateManyAndReturnArgs} args - Arguments to update many BackendPrompts.
+     * @example
+     * // Update many BackendPrompts
+     * const backendPrompt = await prisma.backendPrompt.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BackendPrompts and only return the `id`
+     * const backendPromptWithIdOnly = await prisma.backendPrompt.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BackendPromptUpdateManyAndReturnArgs>(args: SelectSubset<T, BackendPromptUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BackendPrompt.
+     * @param {BackendPromptUpsertArgs} args - Arguments to update or create a BackendPrompt.
+     * @example
+     * // Update or create a BackendPrompt
+     * const backendPrompt = await prisma.backendPrompt.upsert({
+     *   create: {
+     *     // ... data to create a BackendPrompt
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BackendPrompt we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BackendPromptUpsertArgs>(args: SelectSubset<T, BackendPromptUpsertArgs<ExtArgs>>): Prisma__BackendPromptClient<$Result.GetResult<Prisma.$BackendPromptPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BackendPrompts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptCountArgs} args - Arguments to filter BackendPrompts to count.
+     * @example
+     * // Count the number of BackendPrompts
+     * const count = await prisma.backendPrompt.count({
+     *   where: {
+     *     // ... the filter for the BackendPrompts we want to count
+     *   }
+     * })
+    **/
+    count<T extends BackendPromptCountArgs>(
+      args?: Subset<T, BackendPromptCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BackendPromptCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BackendPrompt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BackendPromptAggregateArgs>(args: Subset<T, BackendPromptAggregateArgs>): Prisma.PrismaPromise<GetBackendPromptAggregateType<T>>
+
+    /**
+     * Group by BackendPrompt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BackendPromptGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BackendPromptGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BackendPromptGroupByArgs['orderBy'] }
+        : { orderBy?: BackendPromptGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BackendPromptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBackendPromptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BackendPrompt model
+   */
+  readonly fields: BackendPromptFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BackendPrompt.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BackendPromptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BackendPrompt model
+   */
+  interface BackendPromptFieldRefs {
+    readonly id: FieldRef<"BackendPrompt", 'String'>
+    readonly prompt: FieldRef<"BackendPrompt", 'String'>
+    readonly managerPrompt: FieldRef<"BackendPrompt", 'Json'>
+    readonly responseContent: FieldRef<"BackendPrompt", 'String'>
+    readonly type: FieldRef<"BackendPrompt", 'BackendPromptType'>
+    readonly createdAt: FieldRef<"BackendPrompt", 'DateTime'>
+    readonly updatedAt: FieldRef<"BackendPrompt", 'DateTime'>
+    readonly projectId: FieldRef<"BackendPrompt", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BackendPrompt findUnique
+   */
+  export type BackendPromptFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which BackendPrompt to fetch.
+     */
+    where: BackendPromptWhereUniqueInput
+  }
+
+  /**
+   * BackendPrompt findUniqueOrThrow
+   */
+  export type BackendPromptFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which BackendPrompt to fetch.
+     */
+    where: BackendPromptWhereUniqueInput
+  }
+
+  /**
+   * BackendPrompt findFirst
+   */
+  export type BackendPromptFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which BackendPrompt to fetch.
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BackendPrompts to fetch.
+     */
+    orderBy?: BackendPromptOrderByWithRelationInput | BackendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BackendPrompts.
+     */
+    cursor?: BackendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BackendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BackendPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BackendPrompts.
+     */
+    distinct?: BackendPromptScalarFieldEnum | BackendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * BackendPrompt findFirstOrThrow
+   */
+  export type BackendPromptFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which BackendPrompt to fetch.
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BackendPrompts to fetch.
+     */
+    orderBy?: BackendPromptOrderByWithRelationInput | BackendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BackendPrompts.
+     */
+    cursor?: BackendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BackendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BackendPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BackendPrompts.
+     */
+    distinct?: BackendPromptScalarFieldEnum | BackendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * BackendPrompt findMany
+   */
+  export type BackendPromptFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which BackendPrompts to fetch.
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BackendPrompts to fetch.
+     */
+    orderBy?: BackendPromptOrderByWithRelationInput | BackendPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BackendPrompts.
+     */
+    cursor?: BackendPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BackendPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BackendPrompts.
+     */
+    skip?: number
+    distinct?: BackendPromptScalarFieldEnum | BackendPromptScalarFieldEnum[]
+  }
+
+  /**
+   * BackendPrompt create
+   */
+  export type BackendPromptCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BackendPrompt.
+     */
+    data: XOR<BackendPromptCreateInput, BackendPromptUncheckedCreateInput>
+  }
+
+  /**
+   * BackendPrompt createMany
+   */
+  export type BackendPromptCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BackendPrompts.
+     */
+    data: BackendPromptCreateManyInput | BackendPromptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BackendPrompt createManyAndReturn
+   */
+  export type BackendPromptCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * The data used to create many BackendPrompts.
+     */
+    data: BackendPromptCreateManyInput | BackendPromptCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BackendPrompt update
+   */
+  export type BackendPromptUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BackendPrompt.
+     */
+    data: XOR<BackendPromptUpdateInput, BackendPromptUncheckedUpdateInput>
+    /**
+     * Choose, which BackendPrompt to update.
+     */
+    where: BackendPromptWhereUniqueInput
+  }
+
+  /**
+   * BackendPrompt updateMany
+   */
+  export type BackendPromptUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BackendPrompts.
+     */
+    data: XOR<BackendPromptUpdateManyMutationInput, BackendPromptUncheckedUpdateManyInput>
+    /**
+     * Filter which BackendPrompts to update
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * Limit how many BackendPrompts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BackendPrompt updateManyAndReturn
+   */
+  export type BackendPromptUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * The data used to update BackendPrompts.
+     */
+    data: XOR<BackendPromptUpdateManyMutationInput, BackendPromptUncheckedUpdateManyInput>
+    /**
+     * Filter which BackendPrompts to update
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * Limit how many BackendPrompts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BackendPrompt upsert
+   */
+  export type BackendPromptUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BackendPrompt to update in case it exists.
+     */
+    where: BackendPromptWhereUniqueInput
+    /**
+     * In case the BackendPrompt found by the `where` argument doesn't exist, create a new BackendPrompt with this data.
+     */
+    create: XOR<BackendPromptCreateInput, BackendPromptUncheckedCreateInput>
+    /**
+     * In case the BackendPrompt was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BackendPromptUpdateInput, BackendPromptUncheckedUpdateInput>
+  }
+
+  /**
+   * BackendPrompt delete
+   */
+  export type BackendPromptDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+    /**
+     * Filter which BackendPrompt to delete.
+     */
+    where: BackendPromptWhereUniqueInput
+  }
+
+  /**
+   * BackendPrompt deleteMany
+   */
+  export type BackendPromptDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BackendPrompts to delete
+     */
+    where?: BackendPromptWhereInput
+    /**
+     * Limit how many BackendPrompts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BackendPrompt without action
+   */
+  export type BackendPromptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BackendPrompt
+     */
+    select?: BackendPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BackendPrompt
+     */
+    omit?: BackendPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BackendPromptInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model QAPrompt
+   */
+
+  export type AggregateQAPrompt = {
+    _count: QAPromptCountAggregateOutputType | null
+    _min: QAPromptMinAggregateOutputType | null
+    _max: QAPromptMaxAggregateOutputType | null
+  }
+
+  export type QAPromptMinAggregateOutputType = {
+    id: string | null
+    prompt: string | null
+    responseContent: string | null
+    type: $Enums.QAPromptType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type QAPromptMaxAggregateOutputType = {
+    id: string | null
+    prompt: string | null
+    responseContent: string | null
+    type: $Enums.QAPromptType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    projectId: string | null
+  }
+
+  export type QAPromptCountAggregateOutputType = {
+    id: number
+    prompt: number
+    content: number
+    responseContent: number
+    type: number
+    createdAt: number
+    updatedAt: number
+    projectId: number
+    _all: number
+  }
+
+
+  export type QAPromptMinAggregateInputType = {
+    id?: true
+    prompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type QAPromptMaxAggregateInputType = {
+    id?: true
+    prompt?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+  }
+
+  export type QAPromptCountAggregateInputType = {
+    id?: true
+    prompt?: true
+    content?: true
+    responseContent?: true
+    type?: true
+    createdAt?: true
+    updatedAt?: true
+    projectId?: true
+    _all?: true
+  }
+
+  export type QAPromptAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QAPrompt to aggregate.
+     */
+    where?: QAPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QAPrompts to fetch.
+     */
+    orderBy?: QAPromptOrderByWithRelationInput | QAPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: QAPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QAPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QAPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned QAPrompts
+    **/
+    _count?: true | QAPromptCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: QAPromptMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: QAPromptMaxAggregateInputType
+  }
+
+  export type GetQAPromptAggregateType<T extends QAPromptAggregateArgs> = {
+        [P in keyof T & keyof AggregateQAPrompt]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateQAPrompt[P]>
+      : GetScalarType<T[P], AggregateQAPrompt[P]>
+  }
+
+
+
+
+  export type QAPromptGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: QAPromptWhereInput
+    orderBy?: QAPromptOrderByWithAggregationInput | QAPromptOrderByWithAggregationInput[]
+    by: QAPromptScalarFieldEnum[] | QAPromptScalarFieldEnum
+    having?: QAPromptScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: QAPromptCountAggregateInputType | true
+    _min?: QAPromptMinAggregateInputType
+    _max?: QAPromptMaxAggregateInputType
+  }
+
+  export type QAPromptGroupByOutputType = {
+    id: string
+    prompt: string | null
+    content: JsonValue | null
+    responseContent: string | null
+    type: $Enums.QAPromptType
+    createdAt: Date
+    updatedAt: Date
+    projectId: string
+    _count: QAPromptCountAggregateOutputType | null
+    _min: QAPromptMinAggregateOutputType | null
+    _max: QAPromptMaxAggregateOutputType | null
+  }
+
+  type GetQAPromptGroupByPayload<T extends QAPromptGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<QAPromptGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof QAPromptGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], QAPromptGroupByOutputType[P]>
+            : GetScalarType<T[P], QAPromptGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type QAPromptSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    content?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["qAPrompt"]>
+
+  export type QAPromptSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    content?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["qAPrompt"]>
+
+  export type QAPromptSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    prompt?: boolean
+    content?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["qAPrompt"]>
+
+  export type QAPromptSelectScalar = {
+    id?: boolean
+    prompt?: boolean
+    content?: boolean
+    responseContent?: boolean
+    type?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    projectId?: boolean
+  }
+
+  export type QAPromptOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "prompt" | "content" | "responseContent" | "type" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["qAPrompt"]>
+  export type QAPromptInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type QAPromptIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+  export type QAPromptIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    project?: boolean | ProjectDefaultArgs<ExtArgs>
+  }
+
+  export type $QAPromptPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "QAPrompt"
+    objects: {
+      project: Prisma.$ProjectPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      prompt: string | null
+      content: Prisma.JsonValue | null
+      responseContent: string | null
+      type: $Enums.QAPromptType
+      createdAt: Date
+      updatedAt: Date
+      projectId: string
+    }, ExtArgs["result"]["qAPrompt"]>
+    composites: {}
+  }
+
+  type QAPromptGetPayload<S extends boolean | null | undefined | QAPromptDefaultArgs> = $Result.GetResult<Prisma.$QAPromptPayload, S>
+
+  type QAPromptCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<QAPromptFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: QAPromptCountAggregateInputType | true
+    }
+
+  export interface QAPromptDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['QAPrompt'], meta: { name: 'QAPrompt' } }
+    /**
+     * Find zero or one QAPrompt that matches the filter.
+     * @param {QAPromptFindUniqueArgs} args - Arguments to find a QAPrompt
+     * @example
+     * // Get one QAPrompt
+     * const qAPrompt = await prisma.qAPrompt.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends QAPromptFindUniqueArgs>(args: SelectSubset<T, QAPromptFindUniqueArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one QAPrompt that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {QAPromptFindUniqueOrThrowArgs} args - Arguments to find a QAPrompt
+     * @example
+     * // Get one QAPrompt
+     * const qAPrompt = await prisma.qAPrompt.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends QAPromptFindUniqueOrThrowArgs>(args: SelectSubset<T, QAPromptFindUniqueOrThrowArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QAPrompt that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptFindFirstArgs} args - Arguments to find a QAPrompt
+     * @example
+     * // Get one QAPrompt
+     * const qAPrompt = await prisma.qAPrompt.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends QAPromptFindFirstArgs>(args?: SelectSubset<T, QAPromptFindFirstArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first QAPrompt that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptFindFirstOrThrowArgs} args - Arguments to find a QAPrompt
+     * @example
+     * // Get one QAPrompt
+     * const qAPrompt = await prisma.qAPrompt.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends QAPromptFindFirstOrThrowArgs>(args?: SelectSubset<T, QAPromptFindFirstOrThrowArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more QAPrompts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all QAPrompts
+     * const qAPrompts = await prisma.qAPrompt.findMany()
+     * 
+     * // Get first 10 QAPrompts
+     * const qAPrompts = await prisma.qAPrompt.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const qAPromptWithIdOnly = await prisma.qAPrompt.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends QAPromptFindManyArgs>(args?: SelectSubset<T, QAPromptFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a QAPrompt.
+     * @param {QAPromptCreateArgs} args - Arguments to create a QAPrompt.
+     * @example
+     * // Create one QAPrompt
+     * const QAPrompt = await prisma.qAPrompt.create({
+     *   data: {
+     *     // ... data to create a QAPrompt
+     *   }
+     * })
+     * 
+     */
+    create<T extends QAPromptCreateArgs>(args: SelectSubset<T, QAPromptCreateArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many QAPrompts.
+     * @param {QAPromptCreateManyArgs} args - Arguments to create many QAPrompts.
+     * @example
+     * // Create many QAPrompts
+     * const qAPrompt = await prisma.qAPrompt.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends QAPromptCreateManyArgs>(args?: SelectSubset<T, QAPromptCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many QAPrompts and returns the data saved in the database.
+     * @param {QAPromptCreateManyAndReturnArgs} args - Arguments to create many QAPrompts.
+     * @example
+     * // Create many QAPrompts
+     * const qAPrompt = await prisma.qAPrompt.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many QAPrompts and only return the `id`
+     * const qAPromptWithIdOnly = await prisma.qAPrompt.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends QAPromptCreateManyAndReturnArgs>(args?: SelectSubset<T, QAPromptCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a QAPrompt.
+     * @param {QAPromptDeleteArgs} args - Arguments to delete one QAPrompt.
+     * @example
+     * // Delete one QAPrompt
+     * const QAPrompt = await prisma.qAPrompt.delete({
+     *   where: {
+     *     // ... filter to delete one QAPrompt
+     *   }
+     * })
+     * 
+     */
+    delete<T extends QAPromptDeleteArgs>(args: SelectSubset<T, QAPromptDeleteArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one QAPrompt.
+     * @param {QAPromptUpdateArgs} args - Arguments to update one QAPrompt.
+     * @example
+     * // Update one QAPrompt
+     * const qAPrompt = await prisma.qAPrompt.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends QAPromptUpdateArgs>(args: SelectSubset<T, QAPromptUpdateArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more QAPrompts.
+     * @param {QAPromptDeleteManyArgs} args - Arguments to filter QAPrompts to delete.
+     * @example
+     * // Delete a few QAPrompts
+     * const { count } = await prisma.qAPrompt.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends QAPromptDeleteManyArgs>(args?: SelectSubset<T, QAPromptDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QAPrompts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many QAPrompts
+     * const qAPrompt = await prisma.qAPrompt.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends QAPromptUpdateManyArgs>(args: SelectSubset<T, QAPromptUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more QAPrompts and returns the data updated in the database.
+     * @param {QAPromptUpdateManyAndReturnArgs} args - Arguments to update many QAPrompts.
+     * @example
+     * // Update many QAPrompts
+     * const qAPrompt = await prisma.qAPrompt.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more QAPrompts and only return the `id`
+     * const qAPromptWithIdOnly = await prisma.qAPrompt.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends QAPromptUpdateManyAndReturnArgs>(args: SelectSubset<T, QAPromptUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one QAPrompt.
+     * @param {QAPromptUpsertArgs} args - Arguments to update or create a QAPrompt.
+     * @example
+     * // Update or create a QAPrompt
+     * const qAPrompt = await prisma.qAPrompt.upsert({
+     *   create: {
+     *     // ... data to create a QAPrompt
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the QAPrompt we want to update
+     *   }
+     * })
+     */
+    upsert<T extends QAPromptUpsertArgs>(args: SelectSubset<T, QAPromptUpsertArgs<ExtArgs>>): Prisma__QAPromptClient<$Result.GetResult<Prisma.$QAPromptPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of QAPrompts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptCountArgs} args - Arguments to filter QAPrompts to count.
+     * @example
+     * // Count the number of QAPrompts
+     * const count = await prisma.qAPrompt.count({
+     *   where: {
+     *     // ... the filter for the QAPrompts we want to count
+     *   }
+     * })
+    **/
+    count<T extends QAPromptCountArgs>(
+      args?: Subset<T, QAPromptCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], QAPromptCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a QAPrompt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends QAPromptAggregateArgs>(args: Subset<T, QAPromptAggregateArgs>): Prisma.PrismaPromise<GetQAPromptAggregateType<T>>
+
+    /**
+     * Group by QAPrompt.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {QAPromptGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends QAPromptGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: QAPromptGroupByArgs['orderBy'] }
+        : { orderBy?: QAPromptGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, QAPromptGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetQAPromptGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the QAPrompt model
+   */
+  readonly fields: QAPromptFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for QAPrompt.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__QAPromptClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the QAPrompt model
+   */
+  interface QAPromptFieldRefs {
+    readonly id: FieldRef<"QAPrompt", 'String'>
+    readonly prompt: FieldRef<"QAPrompt", 'String'>
+    readonly content: FieldRef<"QAPrompt", 'Json'>
+    readonly responseContent: FieldRef<"QAPrompt", 'String'>
+    readonly type: FieldRef<"QAPrompt", 'QAPromptType'>
+    readonly createdAt: FieldRef<"QAPrompt", 'DateTime'>
+    readonly updatedAt: FieldRef<"QAPrompt", 'DateTime'>
+    readonly projectId: FieldRef<"QAPrompt", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * QAPrompt findUnique
+   */
+  export type QAPromptFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which QAPrompt to fetch.
+     */
+    where: QAPromptWhereUniqueInput
+  }
+
+  /**
+   * QAPrompt findUniqueOrThrow
+   */
+  export type QAPromptFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which QAPrompt to fetch.
+     */
+    where: QAPromptWhereUniqueInput
+  }
+
+  /**
+   * QAPrompt findFirst
+   */
+  export type QAPromptFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which QAPrompt to fetch.
+     */
+    where?: QAPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QAPrompts to fetch.
+     */
+    orderBy?: QAPromptOrderByWithRelationInput | QAPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QAPrompts.
+     */
+    cursor?: QAPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QAPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QAPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QAPrompts.
+     */
+    distinct?: QAPromptScalarFieldEnum | QAPromptScalarFieldEnum[]
+  }
+
+  /**
+   * QAPrompt findFirstOrThrow
+   */
+  export type QAPromptFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which QAPrompt to fetch.
+     */
+    where?: QAPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QAPrompts to fetch.
+     */
+    orderBy?: QAPromptOrderByWithRelationInput | QAPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for QAPrompts.
+     */
+    cursor?: QAPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QAPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QAPrompts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of QAPrompts.
+     */
+    distinct?: QAPromptScalarFieldEnum | QAPromptScalarFieldEnum[]
+  }
+
+  /**
+   * QAPrompt findMany
+   */
+  export type QAPromptFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * Filter, which QAPrompts to fetch.
+     */
+    where?: QAPromptWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of QAPrompts to fetch.
+     */
+    orderBy?: QAPromptOrderByWithRelationInput | QAPromptOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing QAPrompts.
+     */
+    cursor?: QAPromptWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` QAPrompts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` QAPrompts.
+     */
+    skip?: number
+    distinct?: QAPromptScalarFieldEnum | QAPromptScalarFieldEnum[]
+  }
+
+  /**
+   * QAPrompt create
+   */
+  export type QAPromptCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * The data needed to create a QAPrompt.
+     */
+    data: XOR<QAPromptCreateInput, QAPromptUncheckedCreateInput>
+  }
+
+  /**
+   * QAPrompt createMany
+   */
+  export type QAPromptCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many QAPrompts.
+     */
+    data: QAPromptCreateManyInput | QAPromptCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * QAPrompt createManyAndReturn
+   */
+  export type QAPromptCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * The data used to create many QAPrompts.
+     */
+    data: QAPromptCreateManyInput | QAPromptCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QAPrompt update
+   */
+  export type QAPromptUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * The data needed to update a QAPrompt.
+     */
+    data: XOR<QAPromptUpdateInput, QAPromptUncheckedUpdateInput>
+    /**
+     * Choose, which QAPrompt to update.
+     */
+    where: QAPromptWhereUniqueInput
+  }
+
+  /**
+   * QAPrompt updateMany
+   */
+  export type QAPromptUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update QAPrompts.
+     */
+    data: XOR<QAPromptUpdateManyMutationInput, QAPromptUncheckedUpdateManyInput>
+    /**
+     * Filter which QAPrompts to update
+     */
+    where?: QAPromptWhereInput
+    /**
+     * Limit how many QAPrompts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * QAPrompt updateManyAndReturn
+   */
+  export type QAPromptUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * The data used to update QAPrompts.
+     */
+    data: XOR<QAPromptUpdateManyMutationInput, QAPromptUncheckedUpdateManyInput>
+    /**
+     * Filter which QAPrompts to update
+     */
+    where?: QAPromptWhereInput
+    /**
+     * Limit how many QAPrompts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * QAPrompt upsert
+   */
+  export type QAPromptUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * The filter to search for the QAPrompt to update in case it exists.
+     */
+    where: QAPromptWhereUniqueInput
+    /**
+     * In case the QAPrompt found by the `where` argument doesn't exist, create a new QAPrompt with this data.
+     */
+    create: XOR<QAPromptCreateInput, QAPromptUncheckedCreateInput>
+    /**
+     * In case the QAPrompt was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<QAPromptUpdateInput, QAPromptUncheckedUpdateInput>
+  }
+
+  /**
+   * QAPrompt delete
+   */
+  export type QAPromptDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+    /**
+     * Filter which QAPrompt to delete.
+     */
+    where: QAPromptWhereUniqueInput
+  }
+
+  /**
+   * QAPrompt deleteMany
+   */
+  export type QAPromptDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which QAPrompts to delete
+     */
+    where?: QAPromptWhereInput
+    /**
+     * Limit how many QAPrompts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * QAPrompt without action
+   */
+  export type QAPromptDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the QAPrompt
+     */
+    select?: QAPromptSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the QAPrompt
+     */
+    omit?: QAPromptOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: QAPromptInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4440,6 +8193,9 @@ export namespace Prisma {
 
   export const ManagerResponseScalarFieldEnum: {
     id: 'id',
+    content: 'content',
+    prompt: 'prompt',
+    type: 'type',
     frontendRoadMap: 'frontendRoadMap',
     backendRoadMap: 'backendRoadMap',
     qaRoadmap: 'qaRoadmap',
@@ -4451,6 +8207,48 @@ export namespace Prisma {
   export type ManagerResponseScalarFieldEnum = (typeof ManagerResponseScalarFieldEnum)[keyof typeof ManagerResponseScalarFieldEnum]
 
 
+  export const FrontendPromptScalarFieldEnum: {
+    id: 'id',
+    prompt: 'prompt',
+    managerPrompt: 'managerPrompt',
+    responseContent: 'responseContent',
+    type: 'type',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    projectId: 'projectId'
+  };
+
+  export type FrontendPromptScalarFieldEnum = (typeof FrontendPromptScalarFieldEnum)[keyof typeof FrontendPromptScalarFieldEnum]
+
+
+  export const BackendPromptScalarFieldEnum: {
+    id: 'id',
+    prompt: 'prompt',
+    managerPrompt: 'managerPrompt',
+    responseContent: 'responseContent',
+    type: 'type',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    projectId: 'projectId'
+  };
+
+  export type BackendPromptScalarFieldEnum = (typeof BackendPromptScalarFieldEnum)[keyof typeof BackendPromptScalarFieldEnum]
+
+
+  export const QAPromptScalarFieldEnum: {
+    id: 'id',
+    prompt: 'prompt',
+    content: 'content',
+    responseContent: 'responseContent',
+    type: 'type',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    projectId: 'projectId'
+  };
+
+  export type QAPromptScalarFieldEnum = (typeof QAPromptScalarFieldEnum)[keyof typeof QAPromptScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -4459,11 +8257,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const JsonNullValueInput: {
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
     JsonNull: typeof JsonNull
   };
 
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -4539,6 +8338,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ManagerPromptType'
+   */
+  export type EnumManagerPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ManagerPromptType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ManagerPromptType[]'
+   */
+  export type ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ManagerPromptType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -4549,6 +8362,48 @@ export namespace Prisma {
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
+   * Reference to a field of type 'FrontendPromptType'
+   */
+  export type EnumFrontendPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FrontendPromptType'>
+    
+
+
+  /**
+   * Reference to a field of type 'FrontendPromptType[]'
+   */
+  export type ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FrontendPromptType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'BackendPromptType'
+   */
+  export type EnumBackendPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BackendPromptType'>
+    
+
+
+  /**
+   * Reference to a field of type 'BackendPromptType[]'
+   */
+  export type ListEnumBackendPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BackendPromptType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'QAPromptType'
+   */
+  export type EnumQAPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QAPromptType'>
+    
+
+
+  /**
+   * Reference to a field of type 'QAPromptType[]'
+   */
+  export type ListEnumQAPromptTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QAPromptType[]'>
     
 
 
@@ -4580,8 +8435,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: StringFilter<"Project"> | string
-    managerResponse?: ManagerResponseListRelationFilter
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    managerResponses?: ManagerResponseListRelationFilter
+    frontendPrompts?: FrontendPromptListRelationFilter
+    backendPrompts?: BackendPromptListRelationFilter
+    qaPrompts?: QAPromptListRelationFilter
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -4592,8 +8450,11 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
-    managerResponse?: ManagerResponseOrderByRelationAggregateInput
     User?: UserOrderByWithRelationInput
+    managerResponses?: ManagerResponseOrderByRelationAggregateInput
+    frontendPrompts?: FrontendPromptOrderByRelationAggregateInput
+    backendPrompts?: BackendPromptOrderByRelationAggregateInput
+    qaPrompts?: QAPromptOrderByRelationAggregateInput
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -4607,8 +8468,11 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
     userId?: StringFilter<"Project"> | string
-    managerResponse?: ManagerResponseListRelationFilter
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    managerResponses?: ManagerResponseListRelationFilter
+    frontendPrompts?: FrontendPromptListRelationFilter
+    backendPrompts?: BackendPromptListRelationFilter
+    qaPrompts?: QAPromptListRelationFilter
   }, "id">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -4702,9 +8566,12 @@ export namespace Prisma {
     OR?: ManagerResponseWhereInput[]
     NOT?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
     id?: StringFilter<"ManagerResponse"> | string
-    frontendRoadMap?: JsonFilter<"ManagerResponse">
-    backendRoadMap?: JsonFilter<"ManagerResponse">
-    qaRoadmap?: JsonFilter<"ManagerResponse">
+    content?: StringNullableFilter<"ManagerResponse"> | string | null
+    prompt?: StringNullableFilter<"ManagerResponse"> | string | null
+    type?: EnumManagerPromptTypeNullableFilter<"ManagerResponse"> | $Enums.ManagerPromptType | null
+    frontendRoadMap?: JsonNullableFilter<"ManagerResponse">
+    backendRoadMap?: JsonNullableFilter<"ManagerResponse">
+    qaRoadmap?: JsonNullableFilter<"ManagerResponse">
     createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
     updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
     projectId?: StringFilter<"ManagerResponse"> | string
@@ -4713,9 +8580,12 @@ export namespace Prisma {
 
   export type ManagerResponseOrderByWithRelationInput = {
     id?: SortOrder
-    frontendRoadMap?: SortOrder
-    backendRoadMap?: SortOrder
-    qaRoadmap?: SortOrder
+    content?: SortOrderInput | SortOrder
+    prompt?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    frontendRoadMap?: SortOrderInput | SortOrder
+    backendRoadMap?: SortOrderInput | SortOrder
+    qaRoadmap?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
@@ -4727,9 +8597,12 @@ export namespace Prisma {
     AND?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
     OR?: ManagerResponseWhereInput[]
     NOT?: ManagerResponseWhereInput | ManagerResponseWhereInput[]
-    frontendRoadMap?: JsonFilter<"ManagerResponse">
-    backendRoadMap?: JsonFilter<"ManagerResponse">
-    qaRoadmap?: JsonFilter<"ManagerResponse">
+    content?: StringNullableFilter<"ManagerResponse"> | string | null
+    prompt?: StringNullableFilter<"ManagerResponse"> | string | null
+    type?: EnumManagerPromptTypeNullableFilter<"ManagerResponse"> | $Enums.ManagerPromptType | null
+    frontendRoadMap?: JsonNullableFilter<"ManagerResponse">
+    backendRoadMap?: JsonNullableFilter<"ManagerResponse">
+    qaRoadmap?: JsonNullableFilter<"ManagerResponse">
     createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
     updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
     projectId?: StringFilter<"ManagerResponse"> | string
@@ -4738,9 +8611,12 @@ export namespace Prisma {
 
   export type ManagerResponseOrderByWithAggregationInput = {
     id?: SortOrder
-    frontendRoadMap?: SortOrder
-    backendRoadMap?: SortOrder
-    qaRoadmap?: SortOrder
+    content?: SortOrderInput | SortOrder
+    prompt?: SortOrderInput | SortOrder
+    type?: SortOrderInput | SortOrder
+    frontendRoadMap?: SortOrderInput | SortOrder
+    backendRoadMap?: SortOrderInput | SortOrder
+    qaRoadmap?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
@@ -4754,12 +8630,225 @@ export namespace Prisma {
     OR?: ManagerResponseScalarWhereWithAggregatesInput[]
     NOT?: ManagerResponseScalarWhereWithAggregatesInput | ManagerResponseScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ManagerResponse"> | string
-    frontendRoadMap?: JsonWithAggregatesFilter<"ManagerResponse">
-    backendRoadMap?: JsonWithAggregatesFilter<"ManagerResponse">
-    qaRoadmap?: JsonWithAggregatesFilter<"ManagerResponse">
+    content?: StringNullableWithAggregatesFilter<"ManagerResponse"> | string | null
+    prompt?: StringNullableWithAggregatesFilter<"ManagerResponse"> | string | null
+    type?: EnumManagerPromptTypeNullableWithAggregatesFilter<"ManagerResponse"> | $Enums.ManagerPromptType | null
+    frontendRoadMap?: JsonNullableWithAggregatesFilter<"ManagerResponse">
+    backendRoadMap?: JsonNullableWithAggregatesFilter<"ManagerResponse">
+    qaRoadmap?: JsonNullableWithAggregatesFilter<"ManagerResponse">
     createdAt?: DateTimeWithAggregatesFilter<"ManagerResponse"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ManagerResponse"> | Date | string
     projectId?: StringWithAggregatesFilter<"ManagerResponse"> | string
+  }
+
+  export type FrontendPromptWhereInput = {
+    AND?: FrontendPromptWhereInput | FrontendPromptWhereInput[]
+    OR?: FrontendPromptWhereInput[]
+    NOT?: FrontendPromptWhereInput | FrontendPromptWhereInput[]
+    id?: StringFilter<"FrontendPrompt"> | string
+    prompt?: StringNullableFilter<"FrontendPrompt"> | string | null
+    managerPrompt?: JsonNullableFilter<"FrontendPrompt">
+    responseContent?: StringNullableFilter<"FrontendPrompt"> | string | null
+    type?: EnumFrontendPromptTypeFilter<"FrontendPrompt"> | $Enums.FrontendPromptType
+    createdAt?: DateTimeFilter<"FrontendPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"FrontendPrompt"> | Date | string
+    projectId?: StringFilter<"FrontendPrompt"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type FrontendPromptOrderByWithRelationInput = {
+    id?: SortOrder
+    prompt?: SortOrderInput | SortOrder
+    managerPrompt?: SortOrderInput | SortOrder
+    responseContent?: SortOrderInput | SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type FrontendPromptWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FrontendPromptWhereInput | FrontendPromptWhereInput[]
+    OR?: FrontendPromptWhereInput[]
+    NOT?: FrontendPromptWhereInput | FrontendPromptWhereInput[]
+    prompt?: StringNullableFilter<"FrontendPrompt"> | string | null
+    managerPrompt?: JsonNullableFilter<"FrontendPrompt">
+    responseContent?: StringNullableFilter<"FrontendPrompt"> | string | null
+    type?: EnumFrontendPromptTypeFilter<"FrontendPrompt"> | $Enums.FrontendPromptType
+    createdAt?: DateTimeFilter<"FrontendPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"FrontendPrompt"> | Date | string
+    projectId?: StringFilter<"FrontendPrompt"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type FrontendPromptOrderByWithAggregationInput = {
+    id?: SortOrder
+    prompt?: SortOrderInput | SortOrder
+    managerPrompt?: SortOrderInput | SortOrder
+    responseContent?: SortOrderInput | SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    _count?: FrontendPromptCountOrderByAggregateInput
+    _max?: FrontendPromptMaxOrderByAggregateInput
+    _min?: FrontendPromptMinOrderByAggregateInput
+  }
+
+  export type FrontendPromptScalarWhereWithAggregatesInput = {
+    AND?: FrontendPromptScalarWhereWithAggregatesInput | FrontendPromptScalarWhereWithAggregatesInput[]
+    OR?: FrontendPromptScalarWhereWithAggregatesInput[]
+    NOT?: FrontendPromptScalarWhereWithAggregatesInput | FrontendPromptScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FrontendPrompt"> | string
+    prompt?: StringNullableWithAggregatesFilter<"FrontendPrompt"> | string | null
+    managerPrompt?: JsonNullableWithAggregatesFilter<"FrontendPrompt">
+    responseContent?: StringNullableWithAggregatesFilter<"FrontendPrompt"> | string | null
+    type?: EnumFrontendPromptTypeWithAggregatesFilter<"FrontendPrompt"> | $Enums.FrontendPromptType
+    createdAt?: DateTimeWithAggregatesFilter<"FrontendPrompt"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FrontendPrompt"> | Date | string
+    projectId?: StringWithAggregatesFilter<"FrontendPrompt"> | string
+  }
+
+  export type BackendPromptWhereInput = {
+    AND?: BackendPromptWhereInput | BackendPromptWhereInput[]
+    OR?: BackendPromptWhereInput[]
+    NOT?: BackendPromptWhereInput | BackendPromptWhereInput[]
+    id?: StringFilter<"BackendPrompt"> | string
+    prompt?: StringNullableFilter<"BackendPrompt"> | string | null
+    managerPrompt?: JsonNullableFilter<"BackendPrompt">
+    responseContent?: StringNullableFilter<"BackendPrompt"> | string | null
+    type?: EnumBackendPromptTypeFilter<"BackendPrompt"> | $Enums.BackendPromptType
+    createdAt?: DateTimeFilter<"BackendPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"BackendPrompt"> | Date | string
+    projectId?: StringFilter<"BackendPrompt"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type BackendPromptOrderByWithRelationInput = {
+    id?: SortOrder
+    prompt?: SortOrderInput | SortOrder
+    managerPrompt?: SortOrderInput | SortOrder
+    responseContent?: SortOrderInput | SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type BackendPromptWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BackendPromptWhereInput | BackendPromptWhereInput[]
+    OR?: BackendPromptWhereInput[]
+    NOT?: BackendPromptWhereInput | BackendPromptWhereInput[]
+    prompt?: StringNullableFilter<"BackendPrompt"> | string | null
+    managerPrompt?: JsonNullableFilter<"BackendPrompt">
+    responseContent?: StringNullableFilter<"BackendPrompt"> | string | null
+    type?: EnumBackendPromptTypeFilter<"BackendPrompt"> | $Enums.BackendPromptType
+    createdAt?: DateTimeFilter<"BackendPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"BackendPrompt"> | Date | string
+    projectId?: StringFilter<"BackendPrompt"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type BackendPromptOrderByWithAggregationInput = {
+    id?: SortOrder
+    prompt?: SortOrderInput | SortOrder
+    managerPrompt?: SortOrderInput | SortOrder
+    responseContent?: SortOrderInput | SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    _count?: BackendPromptCountOrderByAggregateInput
+    _max?: BackendPromptMaxOrderByAggregateInput
+    _min?: BackendPromptMinOrderByAggregateInput
+  }
+
+  export type BackendPromptScalarWhereWithAggregatesInput = {
+    AND?: BackendPromptScalarWhereWithAggregatesInput | BackendPromptScalarWhereWithAggregatesInput[]
+    OR?: BackendPromptScalarWhereWithAggregatesInput[]
+    NOT?: BackendPromptScalarWhereWithAggregatesInput | BackendPromptScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BackendPrompt"> | string
+    prompt?: StringNullableWithAggregatesFilter<"BackendPrompt"> | string | null
+    managerPrompt?: JsonNullableWithAggregatesFilter<"BackendPrompt">
+    responseContent?: StringNullableWithAggregatesFilter<"BackendPrompt"> | string | null
+    type?: EnumBackendPromptTypeWithAggregatesFilter<"BackendPrompt"> | $Enums.BackendPromptType
+    createdAt?: DateTimeWithAggregatesFilter<"BackendPrompt"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"BackendPrompt"> | Date | string
+    projectId?: StringWithAggregatesFilter<"BackendPrompt"> | string
+  }
+
+  export type QAPromptWhereInput = {
+    AND?: QAPromptWhereInput | QAPromptWhereInput[]
+    OR?: QAPromptWhereInput[]
+    NOT?: QAPromptWhereInput | QAPromptWhereInput[]
+    id?: StringFilter<"QAPrompt"> | string
+    prompt?: StringNullableFilter<"QAPrompt"> | string | null
+    content?: JsonNullableFilter<"QAPrompt">
+    responseContent?: StringNullableFilter<"QAPrompt"> | string | null
+    type?: EnumQAPromptTypeFilter<"QAPrompt"> | $Enums.QAPromptType
+    createdAt?: DateTimeFilter<"QAPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"QAPrompt"> | Date | string
+    projectId?: StringFilter<"QAPrompt"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }
+
+  export type QAPromptOrderByWithRelationInput = {
+    id?: SortOrder
+    prompt?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    responseContent?: SortOrderInput | SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    project?: ProjectOrderByWithRelationInput
+  }
+
+  export type QAPromptWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: QAPromptWhereInput | QAPromptWhereInput[]
+    OR?: QAPromptWhereInput[]
+    NOT?: QAPromptWhereInput | QAPromptWhereInput[]
+    prompt?: StringNullableFilter<"QAPrompt"> | string | null
+    content?: JsonNullableFilter<"QAPrompt">
+    responseContent?: StringNullableFilter<"QAPrompt"> | string | null
+    type?: EnumQAPromptTypeFilter<"QAPrompt"> | $Enums.QAPromptType
+    createdAt?: DateTimeFilter<"QAPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"QAPrompt"> | Date | string
+    projectId?: StringFilter<"QAPrompt"> | string
+    project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+  }, "id">
+
+  export type QAPromptOrderByWithAggregationInput = {
+    id?: SortOrder
+    prompt?: SortOrderInput | SortOrder
+    content?: SortOrderInput | SortOrder
+    responseContent?: SortOrderInput | SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+    _count?: QAPromptCountOrderByAggregateInput
+    _max?: QAPromptMaxOrderByAggregateInput
+    _min?: QAPromptMinOrderByAggregateInput
+  }
+
+  export type QAPromptScalarWhereWithAggregatesInput = {
+    AND?: QAPromptScalarWhereWithAggregatesInput | QAPromptScalarWhereWithAggregatesInput[]
+    OR?: QAPromptScalarWhereWithAggregatesInput[]
+    NOT?: QAPromptScalarWhereWithAggregatesInput | QAPromptScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"QAPrompt"> | string
+    prompt?: StringNullableWithAggregatesFilter<"QAPrompt"> | string | null
+    content?: JsonNullableWithAggregatesFilter<"QAPrompt">
+    responseContent?: StringNullableWithAggregatesFilter<"QAPrompt"> | string | null
+    type?: EnumQAPromptTypeWithAggregatesFilter<"QAPrompt"> | $Enums.QAPromptType
+    createdAt?: DateTimeWithAggregatesFilter<"QAPrompt"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"QAPrompt"> | Date | string
+    projectId?: StringWithAggregatesFilter<"QAPrompt"> | string
   }
 
   export type ProjectCreateInput = {
@@ -4768,9 +8857,12 @@ export namespace Prisma {
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
-    managerResponse?: ManagerResponseCreateNestedManyWithoutProjectInput
+    updatedAt?: Date | string
     User: UserCreateNestedOneWithoutProjectInput
+    managerResponses?: ManagerResponseCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -4779,9 +8871,12 @@ export namespace Prisma {
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     userId: string
-    managerResponse?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    managerResponses?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptUncheckedCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptUncheckedCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUpdateInput = {
@@ -4791,8 +8886,11 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    managerResponse?: ManagerResponseUpdateManyWithoutProjectNestedInput
     User?: UserUpdateOneRequiredWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -4803,7 +8901,10 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
-    managerResponse?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectCreateManyInput = {
@@ -4812,7 +8913,7 @@ export namespace Prisma {
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     userId: string
   }
 
@@ -4841,7 +8942,7 @@ export namespace Prisma {
     email: string
     password?: string | null
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     Project?: ProjectCreateNestedManyWithoutUserInput
   }
 
@@ -4851,7 +8952,7 @@ export namespace Prisma {
     email: string
     password?: string | null
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     Project?: ProjectUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -4881,7 +8982,7 @@ export namespace Prisma {
     email: string
     password?: string | null
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -4904,39 +9005,51 @@ export namespace Prisma {
 
   export type ManagerResponseCreateInput = {
     id?: string
-    frontendRoadMap: JsonNullValueInput | InputJsonValue
-    backendRoadMap: JsonNullValueInput | InputJsonValue
-    qaRoadmap: JsonNullValueInput | InputJsonValue
+    content?: string | null
+    prompt?: string | null
+    type?: $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    updatedAt: Date | string
-    project: ProjectCreateNestedOneWithoutManagerResponseInput
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutManagerResponsesInput
   }
 
   export type ManagerResponseUncheckedCreateInput = {
     id?: string
-    frontendRoadMap: JsonNullValueInput | InputJsonValue
-    backendRoadMap: JsonNullValueInput | InputJsonValue
-    qaRoadmap: JsonNullValueInput | InputJsonValue
+    content?: string | null
+    prompt?: string | null
+    type?: $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     projectId: string
   }
 
   export type ManagerResponseUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    project?: ProjectUpdateOneRequiredWithoutManagerResponseNestedInput
+    project?: ProjectUpdateOneRequiredWithoutManagerResponsesNestedInput
   }
 
   export type ManagerResponseUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: StringFieldUpdateOperationsInput | string
@@ -4944,28 +9057,265 @@ export namespace Prisma {
 
   export type ManagerResponseCreateManyInput = {
     id?: string
-    frontendRoadMap: JsonNullValueInput | InputJsonValue
-    backendRoadMap: JsonNullValueInput | InputJsonValue
-    qaRoadmap: JsonNullValueInput | InputJsonValue
+    content?: string | null
+    prompt?: string | null
+    type?: $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     projectId: string
   }
 
   export type ManagerResponseUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ManagerResponseUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FrontendPromptCreateInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.FrontendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutFrontendPromptsInput
+  }
+
+  export type FrontendPromptUncheckedCreateInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.FrontendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+  }
+
+  export type FrontendPromptUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutFrontendPromptsNestedInput
+  }
+
+  export type FrontendPromptUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type FrontendPromptCreateManyInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.FrontendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+  }
+
+  export type FrontendPromptUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrontendPromptUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BackendPromptCreateInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.BackendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutBackendPromptsInput
+  }
+
+  export type BackendPromptUncheckedCreateInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.BackendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+  }
+
+  export type BackendPromptUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutBackendPromptsNestedInput
+  }
+
+  export type BackendPromptUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type BackendPromptCreateManyInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.BackendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+  }
+
+  export type BackendPromptUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BackendPromptUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QAPromptCreateInput = {
+    id?: string
+    prompt?: string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.QAPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutQaPromptsInput
+  }
+
+  export type QAPromptUncheckedCreateInput = {
+    id?: string
+    prompt?: string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.QAPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+  }
+
+  export type QAPromptUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutQaPromptsNestedInput
+  }
+
+  export type QAPromptUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type QAPromptCreateManyInput = {
+    id?: string
+    prompt?: string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.QAPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: string
+  }
+
+  export type QAPromptUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QAPromptUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: StringFieldUpdateOperationsInput | string
@@ -5019,15 +9369,33 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
   export type ManagerResponseListRelationFilter = {
     every?: ManagerResponseWhereInput
     some?: ManagerResponseWhereInput
     none?: ManagerResponseWhereInput
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
+  export type FrontendPromptListRelationFilter = {
+    every?: FrontendPromptWhereInput
+    some?: FrontendPromptWhereInput
+    none?: FrontendPromptWhereInput
+  }
+
+  export type BackendPromptListRelationFilter = {
+    every?: BackendPromptWhereInput
+    some?: BackendPromptWhereInput
+    none?: BackendPromptWhereInput
+  }
+
+  export type QAPromptListRelationFilter = {
+    every?: QAPromptWhereInput
+    some?: QAPromptWhereInput
+    none?: QAPromptWhereInput
   }
 
   export type SortOrderInput = {
@@ -5036,6 +9404,18 @@ export namespace Prisma {
   }
 
   export type ManagerResponseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FrontendPromptOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BackendPromptOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type QAPromptOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -5165,14 +9545,21 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonFilterBase<$PrismaModel = never> = {
+  export type EnumManagerPromptTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ManagerPromptType | EnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumManagerPromptTypeNullableFilter<$PrismaModel> | $Enums.ManagerPromptType | null
+  }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
@@ -5196,6 +9583,9 @@ export namespace Prisma {
 
   export type ManagerResponseCountOrderByAggregateInput = {
     id?: SortOrder
+    content?: SortOrder
+    prompt?: SortOrder
+    type?: SortOrder
     frontendRoadMap?: SortOrder
     backendRoadMap?: SortOrder
     qaRoadmap?: SortOrder
@@ -5206,6 +9596,9 @@ export namespace Prisma {
 
   export type ManagerResponseMaxOrderByAggregateInput = {
     id?: SortOrder
+    content?: SortOrder
+    prompt?: SortOrder
+    type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
@@ -5213,18 +9606,31 @@ export namespace Prisma {
 
   export type ManagerResponseMinOrderByAggregateInput = {
     id?: SortOrder
+    content?: SortOrder
+    prompt?: SortOrder
+    type?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
   }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+  export type EnumManagerPromptTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ManagerPromptType | EnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumManagerPromptTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ManagerPromptType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumManagerPromptTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumManagerPromptTypeNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
@@ -5239,9 +9645,159 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type EnumFrontendPromptTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.FrontendPromptType | EnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFrontendPromptTypeFilter<$PrismaModel> | $Enums.FrontendPromptType
+  }
+
+  export type FrontendPromptCountOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    managerPrompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type FrontendPromptMaxOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type FrontendPromptMinOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type EnumFrontendPromptTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FrontendPromptType | EnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFrontendPromptTypeWithAggregatesFilter<$PrismaModel> | $Enums.FrontendPromptType
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
+    _min?: NestedEnumFrontendPromptTypeFilter<$PrismaModel>
+    _max?: NestedEnumFrontendPromptTypeFilter<$PrismaModel>
+  }
+
+  export type EnumBackendPromptTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BackendPromptType | EnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBackendPromptTypeFilter<$PrismaModel> | $Enums.BackendPromptType
+  }
+
+  export type BackendPromptCountOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    managerPrompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type BackendPromptMaxOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type BackendPromptMinOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type EnumBackendPromptTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BackendPromptType | EnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBackendPromptTypeWithAggregatesFilter<$PrismaModel> | $Enums.BackendPromptType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBackendPromptTypeFilter<$PrismaModel>
+    _max?: NestedEnumBackendPromptTypeFilter<$PrismaModel>
+  }
+
+  export type EnumQAPromptTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.QAPromptType | EnumQAPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQAPromptTypeFilter<$PrismaModel> | $Enums.QAPromptType
+  }
+
+  export type QAPromptCountOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    content?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type QAPromptMaxOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type QAPromptMinOrderByAggregateInput = {
+    id?: SortOrder
+    prompt?: SortOrder
+    responseContent?: SortOrder
+    type?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    projectId?: SortOrder
+  }
+
+  export type EnumQAPromptTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.QAPromptType | EnumQAPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQAPromptTypeWithAggregatesFilter<$PrismaModel> | $Enums.QAPromptType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumQAPromptTypeFilter<$PrismaModel>
+    _max?: NestedEnumQAPromptTypeFilter<$PrismaModel>
+  }
+
+  export type UserCreateNestedOneWithoutProjectInput = {
+    create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectInput
+    connect?: UserWhereUniqueInput
   }
 
   export type ManagerResponseCreateNestedManyWithoutProjectInput = {
@@ -5251,10 +9807,25 @@ export namespace Prisma {
     connect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
   }
 
-  export type UserCreateNestedOneWithoutProjectInput = {
-    create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProjectInput
-    connect?: UserWhereUniqueInput
+  export type FrontendPromptCreateNestedManyWithoutProjectInput = {
+    create?: XOR<FrontendPromptCreateWithoutProjectInput, FrontendPromptUncheckedCreateWithoutProjectInput> | FrontendPromptCreateWithoutProjectInput[] | FrontendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FrontendPromptCreateOrConnectWithoutProjectInput | FrontendPromptCreateOrConnectWithoutProjectInput[]
+    createMany?: FrontendPromptCreateManyProjectInputEnvelope
+    connect?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+  }
+
+  export type BackendPromptCreateNestedManyWithoutProjectInput = {
+    create?: XOR<BackendPromptCreateWithoutProjectInput, BackendPromptUncheckedCreateWithoutProjectInput> | BackendPromptCreateWithoutProjectInput[] | BackendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BackendPromptCreateOrConnectWithoutProjectInput | BackendPromptCreateOrConnectWithoutProjectInput[]
+    createMany?: BackendPromptCreateManyProjectInputEnvelope
+    connect?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+  }
+
+  export type QAPromptCreateNestedManyWithoutProjectInput = {
+    create?: XOR<QAPromptCreateWithoutProjectInput, QAPromptUncheckedCreateWithoutProjectInput> | QAPromptCreateWithoutProjectInput[] | QAPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: QAPromptCreateOrConnectWithoutProjectInput | QAPromptCreateOrConnectWithoutProjectInput[]
+    createMany?: QAPromptCreateManyProjectInputEnvelope
+    connect?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
   }
 
   export type ManagerResponseUncheckedCreateNestedManyWithoutProjectInput = {
@@ -5262,6 +9833,27 @@ export namespace Prisma {
     connectOrCreate?: ManagerResponseCreateOrConnectWithoutProjectInput | ManagerResponseCreateOrConnectWithoutProjectInput[]
     createMany?: ManagerResponseCreateManyProjectInputEnvelope
     connect?: ManagerResponseWhereUniqueInput | ManagerResponseWhereUniqueInput[]
+  }
+
+  export type FrontendPromptUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<FrontendPromptCreateWithoutProjectInput, FrontendPromptUncheckedCreateWithoutProjectInput> | FrontendPromptCreateWithoutProjectInput[] | FrontendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FrontendPromptCreateOrConnectWithoutProjectInput | FrontendPromptCreateOrConnectWithoutProjectInput[]
+    createMany?: FrontendPromptCreateManyProjectInputEnvelope
+    connect?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+  }
+
+  export type BackendPromptUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<BackendPromptCreateWithoutProjectInput, BackendPromptUncheckedCreateWithoutProjectInput> | BackendPromptCreateWithoutProjectInput[] | BackendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BackendPromptCreateOrConnectWithoutProjectInput | BackendPromptCreateOrConnectWithoutProjectInput[]
+    createMany?: BackendPromptCreateManyProjectInputEnvelope
+    connect?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+  }
+
+  export type QAPromptUncheckedCreateNestedManyWithoutProjectInput = {
+    create?: XOR<QAPromptCreateWithoutProjectInput, QAPromptUncheckedCreateWithoutProjectInput> | QAPromptCreateWithoutProjectInput[] | QAPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: QAPromptCreateOrConnectWithoutProjectInput | QAPromptCreateOrConnectWithoutProjectInput[]
+    createMany?: QAPromptCreateManyProjectInputEnvelope
+    connect?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5280,6 +9872,14 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type UserUpdateOneRequiredWithoutProjectNestedInput = {
+    create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
+    connectOrCreate?: UserCreateOrConnectWithoutProjectInput
+    upsert?: UserUpsertWithoutProjectInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectInput, UserUpdateWithoutProjectInput>, UserUncheckedUpdateWithoutProjectInput>
+  }
+
   export type ManagerResponseUpdateManyWithoutProjectNestedInput = {
     create?: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput> | ManagerResponseCreateWithoutProjectInput[] | ManagerResponseUncheckedCreateWithoutProjectInput[]
     connectOrCreate?: ManagerResponseCreateOrConnectWithoutProjectInput | ManagerResponseCreateOrConnectWithoutProjectInput[]
@@ -5294,12 +9894,46 @@ export namespace Prisma {
     deleteMany?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
   }
 
-  export type UserUpdateOneRequiredWithoutProjectNestedInput = {
-    create?: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
-    connectOrCreate?: UserCreateOrConnectWithoutProjectInput
-    upsert?: UserUpsertWithoutProjectInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutProjectInput, UserUpdateWithoutProjectInput>, UserUncheckedUpdateWithoutProjectInput>
+  export type FrontendPromptUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<FrontendPromptCreateWithoutProjectInput, FrontendPromptUncheckedCreateWithoutProjectInput> | FrontendPromptCreateWithoutProjectInput[] | FrontendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FrontendPromptCreateOrConnectWithoutProjectInput | FrontendPromptCreateOrConnectWithoutProjectInput[]
+    upsert?: FrontendPromptUpsertWithWhereUniqueWithoutProjectInput | FrontendPromptUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: FrontendPromptCreateManyProjectInputEnvelope
+    set?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    disconnect?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    delete?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    connect?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    update?: FrontendPromptUpdateWithWhereUniqueWithoutProjectInput | FrontendPromptUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: FrontendPromptUpdateManyWithWhereWithoutProjectInput | FrontendPromptUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: FrontendPromptScalarWhereInput | FrontendPromptScalarWhereInput[]
+  }
+
+  export type BackendPromptUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<BackendPromptCreateWithoutProjectInput, BackendPromptUncheckedCreateWithoutProjectInput> | BackendPromptCreateWithoutProjectInput[] | BackendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BackendPromptCreateOrConnectWithoutProjectInput | BackendPromptCreateOrConnectWithoutProjectInput[]
+    upsert?: BackendPromptUpsertWithWhereUniqueWithoutProjectInput | BackendPromptUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: BackendPromptCreateManyProjectInputEnvelope
+    set?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    disconnect?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    delete?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    connect?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    update?: BackendPromptUpdateWithWhereUniqueWithoutProjectInput | BackendPromptUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: BackendPromptUpdateManyWithWhereWithoutProjectInput | BackendPromptUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: BackendPromptScalarWhereInput | BackendPromptScalarWhereInput[]
+  }
+
+  export type QAPromptUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<QAPromptCreateWithoutProjectInput, QAPromptUncheckedCreateWithoutProjectInput> | QAPromptCreateWithoutProjectInput[] | QAPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: QAPromptCreateOrConnectWithoutProjectInput | QAPromptCreateOrConnectWithoutProjectInput[]
+    upsert?: QAPromptUpsertWithWhereUniqueWithoutProjectInput | QAPromptUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: QAPromptCreateManyProjectInputEnvelope
+    set?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    disconnect?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    delete?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    connect?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    update?: QAPromptUpdateWithWhereUniqueWithoutProjectInput | QAPromptUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: QAPromptUpdateManyWithWhereWithoutProjectInput | QAPromptUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: QAPromptScalarWhereInput | QAPromptScalarWhereInput[]
   }
 
   export type ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput = {
@@ -5314,6 +9948,48 @@ export namespace Prisma {
     update?: ManagerResponseUpdateWithWhereUniqueWithoutProjectInput | ManagerResponseUpdateWithWhereUniqueWithoutProjectInput[]
     updateMany?: ManagerResponseUpdateManyWithWhereWithoutProjectInput | ManagerResponseUpdateManyWithWhereWithoutProjectInput[]
     deleteMany?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
+  }
+
+  export type FrontendPromptUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<FrontendPromptCreateWithoutProjectInput, FrontendPromptUncheckedCreateWithoutProjectInput> | FrontendPromptCreateWithoutProjectInput[] | FrontendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: FrontendPromptCreateOrConnectWithoutProjectInput | FrontendPromptCreateOrConnectWithoutProjectInput[]
+    upsert?: FrontendPromptUpsertWithWhereUniqueWithoutProjectInput | FrontendPromptUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: FrontendPromptCreateManyProjectInputEnvelope
+    set?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    disconnect?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    delete?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    connect?: FrontendPromptWhereUniqueInput | FrontendPromptWhereUniqueInput[]
+    update?: FrontendPromptUpdateWithWhereUniqueWithoutProjectInput | FrontendPromptUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: FrontendPromptUpdateManyWithWhereWithoutProjectInput | FrontendPromptUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: FrontendPromptScalarWhereInput | FrontendPromptScalarWhereInput[]
+  }
+
+  export type BackendPromptUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<BackendPromptCreateWithoutProjectInput, BackendPromptUncheckedCreateWithoutProjectInput> | BackendPromptCreateWithoutProjectInput[] | BackendPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: BackendPromptCreateOrConnectWithoutProjectInput | BackendPromptCreateOrConnectWithoutProjectInput[]
+    upsert?: BackendPromptUpsertWithWhereUniqueWithoutProjectInput | BackendPromptUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: BackendPromptCreateManyProjectInputEnvelope
+    set?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    disconnect?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    delete?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    connect?: BackendPromptWhereUniqueInput | BackendPromptWhereUniqueInput[]
+    update?: BackendPromptUpdateWithWhereUniqueWithoutProjectInput | BackendPromptUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: BackendPromptUpdateManyWithWhereWithoutProjectInput | BackendPromptUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: BackendPromptScalarWhereInput | BackendPromptScalarWhereInput[]
+  }
+
+  export type QAPromptUncheckedUpdateManyWithoutProjectNestedInput = {
+    create?: XOR<QAPromptCreateWithoutProjectInput, QAPromptUncheckedCreateWithoutProjectInput> | QAPromptCreateWithoutProjectInput[] | QAPromptUncheckedCreateWithoutProjectInput[]
+    connectOrCreate?: QAPromptCreateOrConnectWithoutProjectInput | QAPromptCreateOrConnectWithoutProjectInput[]
+    upsert?: QAPromptUpsertWithWhereUniqueWithoutProjectInput | QAPromptUpsertWithWhereUniqueWithoutProjectInput[]
+    createMany?: QAPromptCreateManyProjectInputEnvelope
+    set?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    disconnect?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    delete?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    connect?: QAPromptWhereUniqueInput | QAPromptWhereUniqueInput[]
+    update?: QAPromptUpdateWithWhereUniqueWithoutProjectInput | QAPromptUpdateWithWhereUniqueWithoutProjectInput[]
+    updateMany?: QAPromptUpdateManyWithWhereWithoutProjectInput | QAPromptUpdateManyWithWhereWithoutProjectInput[]
+    deleteMany?: QAPromptScalarWhereInput | QAPromptScalarWhereInput[]
   }
 
   export type ProjectCreateNestedManyWithoutUserInput = {
@@ -5358,18 +10034,76 @@ export namespace Prisma {
     deleteMany?: ProjectScalarWhereInput | ProjectScalarWhereInput[]
   }
 
-  export type ProjectCreateNestedOneWithoutManagerResponseInput = {
-    create?: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
-    connectOrCreate?: ProjectCreateOrConnectWithoutManagerResponseInput
+  export type ProjectCreateNestedOneWithoutManagerResponsesInput = {
+    create?: XOR<ProjectCreateWithoutManagerResponsesInput, ProjectUncheckedCreateWithoutManagerResponsesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutManagerResponsesInput
     connect?: ProjectWhereUniqueInput
   }
 
-  export type ProjectUpdateOneRequiredWithoutManagerResponseNestedInput = {
-    create?: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
-    connectOrCreate?: ProjectCreateOrConnectWithoutManagerResponseInput
-    upsert?: ProjectUpsertWithoutManagerResponseInput
+  export type NullableEnumManagerPromptTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ManagerPromptType | null
+  }
+
+  export type ProjectUpdateOneRequiredWithoutManagerResponsesNestedInput = {
+    create?: XOR<ProjectCreateWithoutManagerResponsesInput, ProjectUncheckedCreateWithoutManagerResponsesInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutManagerResponsesInput
+    upsert?: ProjectUpsertWithoutManagerResponsesInput
     connect?: ProjectWhereUniqueInput
-    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutManagerResponseInput, ProjectUpdateWithoutManagerResponseInput>, ProjectUncheckedUpdateWithoutManagerResponseInput>
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutManagerResponsesInput, ProjectUpdateWithoutManagerResponsesInput>, ProjectUncheckedUpdateWithoutManagerResponsesInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutFrontendPromptsInput = {
+    create?: XOR<ProjectCreateWithoutFrontendPromptsInput, ProjectUncheckedCreateWithoutFrontendPromptsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFrontendPromptsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type EnumFrontendPromptTypeFieldUpdateOperationsInput = {
+    set?: $Enums.FrontendPromptType
+  }
+
+  export type ProjectUpdateOneRequiredWithoutFrontendPromptsNestedInput = {
+    create?: XOR<ProjectCreateWithoutFrontendPromptsInput, ProjectUncheckedCreateWithoutFrontendPromptsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutFrontendPromptsInput
+    upsert?: ProjectUpsertWithoutFrontendPromptsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutFrontendPromptsInput, ProjectUpdateWithoutFrontendPromptsInput>, ProjectUncheckedUpdateWithoutFrontendPromptsInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutBackendPromptsInput = {
+    create?: XOR<ProjectCreateWithoutBackendPromptsInput, ProjectUncheckedCreateWithoutBackendPromptsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutBackendPromptsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type EnumBackendPromptTypeFieldUpdateOperationsInput = {
+    set?: $Enums.BackendPromptType
+  }
+
+  export type ProjectUpdateOneRequiredWithoutBackendPromptsNestedInput = {
+    create?: XOR<ProjectCreateWithoutBackendPromptsInput, ProjectUncheckedCreateWithoutBackendPromptsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutBackendPromptsInput
+    upsert?: ProjectUpsertWithoutBackendPromptsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutBackendPromptsInput, ProjectUpdateWithoutBackendPromptsInput>, ProjectUncheckedUpdateWithoutBackendPromptsInput>
+  }
+
+  export type ProjectCreateNestedOneWithoutQaPromptsInput = {
+    create?: XOR<ProjectCreateWithoutQaPromptsInput, ProjectUncheckedCreateWithoutQaPromptsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutQaPromptsInput
+    connect?: ProjectWhereUniqueInput
+  }
+
+  export type EnumQAPromptTypeFieldUpdateOperationsInput = {
+    set?: $Enums.QAPromptType
+  }
+
+  export type ProjectUpdateOneRequiredWithoutQaPromptsNestedInput = {
+    create?: XOR<ProjectCreateWithoutQaPromptsInput, ProjectUncheckedCreateWithoutQaPromptsInput>
+    connectOrCreate?: ProjectCreateOrConnectWithoutQaPromptsInput
+    upsert?: ProjectUpsertWithoutQaPromptsInput
+    connect?: ProjectWhereUniqueInput
+    update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutQaPromptsInput, ProjectUpdateWithoutQaPromptsInput>, ProjectUncheckedUpdateWithoutQaPromptsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5497,14 +10231,31 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
+  export type NestedEnumManagerPromptTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ManagerPromptType | EnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumManagerPromptTypeNullableFilter<$PrismaModel> | $Enums.ManagerPromptType | null
+  }
+
+  export type NestedEnumManagerPromptTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ManagerPromptType | EnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ManagerPromptType[] | ListEnumManagerPromptTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumManagerPromptTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ManagerPromptType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumManagerPromptTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumManagerPromptTypeNullableFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
     equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
     path?: string[]
     mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
@@ -5521,22 +10272,102 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumFrontendPromptTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.FrontendPromptType | EnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFrontendPromptTypeFilter<$PrismaModel> | $Enums.FrontendPromptType
+  }
+
+  export type NestedEnumFrontendPromptTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FrontendPromptType | EnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FrontendPromptType[] | ListEnumFrontendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumFrontendPromptTypeWithAggregatesFilter<$PrismaModel> | $Enums.FrontendPromptType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFrontendPromptTypeFilter<$PrismaModel>
+    _max?: NestedEnumFrontendPromptTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumBackendPromptTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.BackendPromptType | EnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBackendPromptTypeFilter<$PrismaModel> | $Enums.BackendPromptType
+  }
+
+  export type NestedEnumBackendPromptTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.BackendPromptType | EnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.BackendPromptType[] | ListEnumBackendPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumBackendPromptTypeWithAggregatesFilter<$PrismaModel> | $Enums.BackendPromptType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumBackendPromptTypeFilter<$PrismaModel>
+    _max?: NestedEnumBackendPromptTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumQAPromptTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.QAPromptType | EnumQAPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQAPromptTypeFilter<$PrismaModel> | $Enums.QAPromptType
+  }
+
+  export type NestedEnumQAPromptTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.QAPromptType | EnumQAPromptTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.QAPromptType[] | ListEnumQAPromptTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumQAPromptTypeWithAggregatesFilter<$PrismaModel> | $Enums.QAPromptType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumQAPromptTypeFilter<$PrismaModel>
+    _max?: NestedEnumQAPromptTypeFilter<$PrismaModel>
+  }
+
+  export type UserCreateWithoutProjectInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutProjectInput = {
+    id?: string
+    name?: string | null
+    email: string
+    password?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutProjectInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
+  }
+
   export type ManagerResponseCreateWithoutProjectInput = {
     id?: string
-    frontendRoadMap: JsonNullValueInput | InputJsonValue
-    backendRoadMap: JsonNullValueInput | InputJsonValue
-    qaRoadmap: JsonNullValueInput | InputJsonValue
+    content?: string | null
+    prompt?: string | null
+    type?: $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type ManagerResponseUncheckedCreateWithoutProjectInput = {
     id?: string
-    frontendRoadMap: JsonNullValueInput | InputJsonValue
-    backendRoadMap: JsonNullValueInput | InputJsonValue
-    qaRoadmap: JsonNullValueInput | InputJsonValue
+    content?: string | null
+    prompt?: string | null
+    type?: $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type ManagerResponseCreateOrConnectWithoutProjectInput = {
@@ -5549,56 +10380,94 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserCreateWithoutProjectInput = {
+  export type FrontendPromptCreateWithoutProjectInput = {
     id?: string
-    name?: string | null
-    email: string
-    password?: string | null
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.FrontendPromptType
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
-  export type UserUncheckedCreateWithoutProjectInput = {
+  export type FrontendPromptUncheckedCreateWithoutProjectInput = {
     id?: string
-    name?: string | null
-    email: string
-    password?: string | null
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.FrontendPromptType
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
-  export type UserCreateOrConnectWithoutProjectInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutProjectInput, UserUncheckedCreateWithoutProjectInput>
+  export type FrontendPromptCreateOrConnectWithoutProjectInput = {
+    where: FrontendPromptWhereUniqueInput
+    create: XOR<FrontendPromptCreateWithoutProjectInput, FrontendPromptUncheckedCreateWithoutProjectInput>
   }
 
-  export type ManagerResponseUpsertWithWhereUniqueWithoutProjectInput = {
-    where: ManagerResponseWhereUniqueInput
-    update: XOR<ManagerResponseUpdateWithoutProjectInput, ManagerResponseUncheckedUpdateWithoutProjectInput>
-    create: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput>
+  export type FrontendPromptCreateManyProjectInputEnvelope = {
+    data: FrontendPromptCreateManyProjectInput | FrontendPromptCreateManyProjectInput[]
+    skipDuplicates?: boolean
   }
 
-  export type ManagerResponseUpdateWithWhereUniqueWithoutProjectInput = {
-    where: ManagerResponseWhereUniqueInput
-    data: XOR<ManagerResponseUpdateWithoutProjectInput, ManagerResponseUncheckedUpdateWithoutProjectInput>
+  export type BackendPromptCreateWithoutProjectInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.BackendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type ManagerResponseUpdateManyWithWhereWithoutProjectInput = {
-    where: ManagerResponseScalarWhereInput
-    data: XOR<ManagerResponseUpdateManyMutationInput, ManagerResponseUncheckedUpdateManyWithoutProjectInput>
+  export type BackendPromptUncheckedCreateWithoutProjectInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.BackendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type ManagerResponseScalarWhereInput = {
-    AND?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
-    OR?: ManagerResponseScalarWhereInput[]
-    NOT?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
-    id?: StringFilter<"ManagerResponse"> | string
-    frontendRoadMap?: JsonFilter<"ManagerResponse">
-    backendRoadMap?: JsonFilter<"ManagerResponse">
-    qaRoadmap?: JsonFilter<"ManagerResponse">
-    createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
-    updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
-    projectId?: StringFilter<"ManagerResponse"> | string
+  export type BackendPromptCreateOrConnectWithoutProjectInput = {
+    where: BackendPromptWhereUniqueInput
+    create: XOR<BackendPromptCreateWithoutProjectInput, BackendPromptUncheckedCreateWithoutProjectInput>
+  }
+
+  export type BackendPromptCreateManyProjectInputEnvelope = {
+    data: BackendPromptCreateManyProjectInput | BackendPromptCreateManyProjectInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type QAPromptCreateWithoutProjectInput = {
+    id?: string
+    prompt?: string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.QAPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QAPromptUncheckedCreateWithoutProjectInput = {
+    id?: string
+    prompt?: string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.QAPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QAPromptCreateOrConnectWithoutProjectInput = {
+    where: QAPromptWhereUniqueInput
+    create: XOR<QAPromptCreateWithoutProjectInput, QAPromptUncheckedCreateWithoutProjectInput>
+  }
+
+  export type QAPromptCreateManyProjectInputEnvelope = {
+    data: QAPromptCreateManyProjectInput | QAPromptCreateManyProjectInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutProjectInput = {
@@ -5630,14 +10499,139 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ManagerResponseUpsertWithWhereUniqueWithoutProjectInput = {
+    where: ManagerResponseWhereUniqueInput
+    update: XOR<ManagerResponseUpdateWithoutProjectInput, ManagerResponseUncheckedUpdateWithoutProjectInput>
+    create: XOR<ManagerResponseCreateWithoutProjectInput, ManagerResponseUncheckedCreateWithoutProjectInput>
+  }
+
+  export type ManagerResponseUpdateWithWhereUniqueWithoutProjectInput = {
+    where: ManagerResponseWhereUniqueInput
+    data: XOR<ManagerResponseUpdateWithoutProjectInput, ManagerResponseUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type ManagerResponseUpdateManyWithWhereWithoutProjectInput = {
+    where: ManagerResponseScalarWhereInput
+    data: XOR<ManagerResponseUpdateManyMutationInput, ManagerResponseUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type ManagerResponseScalarWhereInput = {
+    AND?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
+    OR?: ManagerResponseScalarWhereInput[]
+    NOT?: ManagerResponseScalarWhereInput | ManagerResponseScalarWhereInput[]
+    id?: StringFilter<"ManagerResponse"> | string
+    content?: StringNullableFilter<"ManagerResponse"> | string | null
+    prompt?: StringNullableFilter<"ManagerResponse"> | string | null
+    type?: EnumManagerPromptTypeNullableFilter<"ManagerResponse"> | $Enums.ManagerPromptType | null
+    frontendRoadMap?: JsonNullableFilter<"ManagerResponse">
+    backendRoadMap?: JsonNullableFilter<"ManagerResponse">
+    qaRoadmap?: JsonNullableFilter<"ManagerResponse">
+    createdAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    updatedAt?: DateTimeFilter<"ManagerResponse"> | Date | string
+    projectId?: StringFilter<"ManagerResponse"> | string
+  }
+
+  export type FrontendPromptUpsertWithWhereUniqueWithoutProjectInput = {
+    where: FrontendPromptWhereUniqueInput
+    update: XOR<FrontendPromptUpdateWithoutProjectInput, FrontendPromptUncheckedUpdateWithoutProjectInput>
+    create: XOR<FrontendPromptCreateWithoutProjectInput, FrontendPromptUncheckedCreateWithoutProjectInput>
+  }
+
+  export type FrontendPromptUpdateWithWhereUniqueWithoutProjectInput = {
+    where: FrontendPromptWhereUniqueInput
+    data: XOR<FrontendPromptUpdateWithoutProjectInput, FrontendPromptUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type FrontendPromptUpdateManyWithWhereWithoutProjectInput = {
+    where: FrontendPromptScalarWhereInput
+    data: XOR<FrontendPromptUpdateManyMutationInput, FrontendPromptUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type FrontendPromptScalarWhereInput = {
+    AND?: FrontendPromptScalarWhereInput | FrontendPromptScalarWhereInput[]
+    OR?: FrontendPromptScalarWhereInput[]
+    NOT?: FrontendPromptScalarWhereInput | FrontendPromptScalarWhereInput[]
+    id?: StringFilter<"FrontendPrompt"> | string
+    prompt?: StringNullableFilter<"FrontendPrompt"> | string | null
+    managerPrompt?: JsonNullableFilter<"FrontendPrompt">
+    responseContent?: StringNullableFilter<"FrontendPrompt"> | string | null
+    type?: EnumFrontendPromptTypeFilter<"FrontendPrompt"> | $Enums.FrontendPromptType
+    createdAt?: DateTimeFilter<"FrontendPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"FrontendPrompt"> | Date | string
+    projectId?: StringFilter<"FrontendPrompt"> | string
+  }
+
+  export type BackendPromptUpsertWithWhereUniqueWithoutProjectInput = {
+    where: BackendPromptWhereUniqueInput
+    update: XOR<BackendPromptUpdateWithoutProjectInput, BackendPromptUncheckedUpdateWithoutProjectInput>
+    create: XOR<BackendPromptCreateWithoutProjectInput, BackendPromptUncheckedCreateWithoutProjectInput>
+  }
+
+  export type BackendPromptUpdateWithWhereUniqueWithoutProjectInput = {
+    where: BackendPromptWhereUniqueInput
+    data: XOR<BackendPromptUpdateWithoutProjectInput, BackendPromptUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type BackendPromptUpdateManyWithWhereWithoutProjectInput = {
+    where: BackendPromptScalarWhereInput
+    data: XOR<BackendPromptUpdateManyMutationInput, BackendPromptUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type BackendPromptScalarWhereInput = {
+    AND?: BackendPromptScalarWhereInput | BackendPromptScalarWhereInput[]
+    OR?: BackendPromptScalarWhereInput[]
+    NOT?: BackendPromptScalarWhereInput | BackendPromptScalarWhereInput[]
+    id?: StringFilter<"BackendPrompt"> | string
+    prompt?: StringNullableFilter<"BackendPrompt"> | string | null
+    managerPrompt?: JsonNullableFilter<"BackendPrompt">
+    responseContent?: StringNullableFilter<"BackendPrompt"> | string | null
+    type?: EnumBackendPromptTypeFilter<"BackendPrompt"> | $Enums.BackendPromptType
+    createdAt?: DateTimeFilter<"BackendPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"BackendPrompt"> | Date | string
+    projectId?: StringFilter<"BackendPrompt"> | string
+  }
+
+  export type QAPromptUpsertWithWhereUniqueWithoutProjectInput = {
+    where: QAPromptWhereUniqueInput
+    update: XOR<QAPromptUpdateWithoutProjectInput, QAPromptUncheckedUpdateWithoutProjectInput>
+    create: XOR<QAPromptCreateWithoutProjectInput, QAPromptUncheckedCreateWithoutProjectInput>
+  }
+
+  export type QAPromptUpdateWithWhereUniqueWithoutProjectInput = {
+    where: QAPromptWhereUniqueInput
+    data: XOR<QAPromptUpdateWithoutProjectInput, QAPromptUncheckedUpdateWithoutProjectInput>
+  }
+
+  export type QAPromptUpdateManyWithWhereWithoutProjectInput = {
+    where: QAPromptScalarWhereInput
+    data: XOR<QAPromptUpdateManyMutationInput, QAPromptUncheckedUpdateManyWithoutProjectInput>
+  }
+
+  export type QAPromptScalarWhereInput = {
+    AND?: QAPromptScalarWhereInput | QAPromptScalarWhereInput[]
+    OR?: QAPromptScalarWhereInput[]
+    NOT?: QAPromptScalarWhereInput | QAPromptScalarWhereInput[]
+    id?: StringFilter<"QAPrompt"> | string
+    prompt?: StringNullableFilter<"QAPrompt"> | string | null
+    content?: JsonNullableFilter<"QAPrompt">
+    responseContent?: StringNullableFilter<"QAPrompt"> | string | null
+    type?: EnumQAPromptTypeFilter<"QAPrompt"> | $Enums.QAPromptType
+    createdAt?: DateTimeFilter<"QAPrompt"> | Date | string
+    updatedAt?: DateTimeFilter<"QAPrompt"> | Date | string
+    projectId?: StringFilter<"QAPrompt"> | string
+  }
+
   export type ProjectCreateWithoutUserInput = {
     id?: string
     name: string
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
-    managerResponse?: ManagerResponseCreateNestedManyWithoutProjectInput
+    updatedAt?: Date | string
+    managerResponses?: ManagerResponseCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectUncheckedCreateWithoutUserInput = {
@@ -5646,8 +10640,11 @@ export namespace Prisma {
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
-    managerResponse?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    updatedAt?: Date | string
+    managerResponses?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptUncheckedCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptUncheckedCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptUncheckedCreateNestedManyWithoutProjectInput
   }
 
   export type ProjectCreateOrConnectWithoutUserInput = {
@@ -5689,43 +10686,49 @@ export namespace Prisma {
     userId?: StringFilter<"Project"> | string
   }
 
-  export type ProjectCreateWithoutManagerResponseInput = {
+  export type ProjectCreateWithoutManagerResponsesInput = {
     id?: string
     name: string
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     User: UserCreateNestedOneWithoutProjectInput
+    frontendPrompts?: FrontendPromptCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptCreateNestedManyWithoutProjectInput
   }
 
-  export type ProjectUncheckedCreateWithoutManagerResponseInput = {
+  export type ProjectUncheckedCreateWithoutManagerResponsesInput = {
     id?: string
     name: string
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
     userId: string
+    frontendPrompts?: FrontendPromptUncheckedCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptUncheckedCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptUncheckedCreateNestedManyWithoutProjectInput
   }
 
-  export type ProjectCreateOrConnectWithoutManagerResponseInput = {
+  export type ProjectCreateOrConnectWithoutManagerResponsesInput = {
     where: ProjectWhereUniqueInput
-    create: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
+    create: XOR<ProjectCreateWithoutManagerResponsesInput, ProjectUncheckedCreateWithoutManagerResponsesInput>
   }
 
-  export type ProjectUpsertWithoutManagerResponseInput = {
-    update: XOR<ProjectUpdateWithoutManagerResponseInput, ProjectUncheckedUpdateWithoutManagerResponseInput>
-    create: XOR<ProjectCreateWithoutManagerResponseInput, ProjectUncheckedCreateWithoutManagerResponseInput>
+  export type ProjectUpsertWithoutManagerResponsesInput = {
+    update: XOR<ProjectUpdateWithoutManagerResponsesInput, ProjectUncheckedUpdateWithoutManagerResponsesInput>
+    create: XOR<ProjectCreateWithoutManagerResponsesInput, ProjectUncheckedCreateWithoutManagerResponsesInput>
     where?: ProjectWhereInput
   }
 
-  export type ProjectUpdateToOneWithWhereWithoutManagerResponseInput = {
+  export type ProjectUpdateToOneWithWhereWithoutManagerResponsesInput = {
     where?: ProjectWhereInput
-    data: XOR<ProjectUpdateWithoutManagerResponseInput, ProjectUncheckedUpdateWithoutManagerResponseInput>
+    data: XOR<ProjectUpdateWithoutManagerResponsesInput, ProjectUncheckedUpdateWithoutManagerResponsesInput>
   }
 
-  export type ProjectUpdateWithoutManagerResponseInput = {
+  export type ProjectUpdateWithoutManagerResponsesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5733,9 +10736,12 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     User?: UserUpdateOneRequiredWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUpdateManyWithoutProjectNestedInput
   }
 
-  export type ProjectUncheckedUpdateWithoutManagerResponseInput = {
+  export type ProjectUncheckedUpdateWithoutManagerResponsesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5743,40 +10749,379 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    frontendPrompts?: FrontendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutFrontendPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutProjectInput
+    managerResponses?: ManagerResponseCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutFrontendPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    managerResponses?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptUncheckedCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutFrontendPromptsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutFrontendPromptsInput, ProjectUncheckedCreateWithoutFrontendPromptsInput>
+  }
+
+  export type ProjectUpsertWithoutFrontendPromptsInput = {
+    update: XOR<ProjectUpdateWithoutFrontendPromptsInput, ProjectUncheckedUpdateWithoutFrontendPromptsInput>
+    create: XOR<ProjectCreateWithoutFrontendPromptsInput, ProjectUncheckedCreateWithoutFrontendPromptsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutFrontendPromptsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutFrontendPromptsInput, ProjectUncheckedUpdateWithoutFrontendPromptsInput>
+  }
+
+  export type ProjectUpdateWithoutFrontendPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutFrontendPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    managerResponses?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutBackendPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutProjectInput
+    managerResponses?: ManagerResponseCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutBackendPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    managerResponses?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptUncheckedCreateNestedManyWithoutProjectInput
+    qaPrompts?: QAPromptUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutBackendPromptsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutBackendPromptsInput, ProjectUncheckedCreateWithoutBackendPromptsInput>
+  }
+
+  export type ProjectUpsertWithoutBackendPromptsInput = {
+    update: XOR<ProjectUpdateWithoutBackendPromptsInput, ProjectUncheckedUpdateWithoutBackendPromptsInput>
+    create: XOR<ProjectCreateWithoutBackendPromptsInput, ProjectUncheckedCreateWithoutBackendPromptsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutBackendPromptsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutBackendPromptsInput, ProjectUncheckedUpdateWithoutBackendPromptsInput>
+  }
+
+  export type ProjectUpdateWithoutBackendPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutBackendPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    managerResponses?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectCreateWithoutQaPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User: UserCreateNestedOneWithoutProjectInput
+    managerResponses?: ManagerResponseCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectUncheckedCreateWithoutQaPromptsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    status: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+    managerResponses?: ManagerResponseUncheckedCreateNestedManyWithoutProjectInput
+    frontendPrompts?: FrontendPromptUncheckedCreateNestedManyWithoutProjectInput
+    backendPrompts?: BackendPromptUncheckedCreateNestedManyWithoutProjectInput
+  }
+
+  export type ProjectCreateOrConnectWithoutQaPromptsInput = {
+    where: ProjectWhereUniqueInput
+    create: XOR<ProjectCreateWithoutQaPromptsInput, ProjectUncheckedCreateWithoutQaPromptsInput>
+  }
+
+  export type ProjectUpsertWithoutQaPromptsInput = {
+    update: XOR<ProjectUpdateWithoutQaPromptsInput, ProjectUncheckedUpdateWithoutQaPromptsInput>
+    create: XOR<ProjectCreateWithoutQaPromptsInput, ProjectUncheckedCreateWithoutQaPromptsInput>
+    where?: ProjectWhereInput
+  }
+
+  export type ProjectUpdateToOneWithWhereWithoutQaPromptsInput = {
+    where?: ProjectWhereInput
+    data: XOR<ProjectUpdateWithoutQaPromptsInput, ProjectUncheckedUpdateWithoutQaPromptsInput>
+  }
+
+  export type ProjectUpdateWithoutQaPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUpdateManyWithoutProjectNestedInput
+  }
+
+  export type ProjectUncheckedUpdateWithoutQaPromptsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    managerResponses?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ManagerResponseCreateManyProjectInput = {
     id?: string
-    frontendRoadMap: JsonNullValueInput | InputJsonValue
-    backendRoadMap: JsonNullValueInput | InputJsonValue
-    qaRoadmap: JsonNullValueInput | InputJsonValue
+    content?: string | null
+    prompt?: string | null
+    type?: $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FrontendPromptCreateManyProjectInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.FrontendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BackendPromptCreateManyProjectInput = {
+    id?: string
+    prompt?: string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.BackendPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type QAPromptCreateManyProjectInput = {
+    id?: string
+    prompt?: string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: string | null
+    type: $Enums.QAPromptType
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type ManagerResponseUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ManagerResponseUncheckedUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ManagerResponseUncheckedUpdateManyWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
-    frontendRoadMap?: JsonNullValueInput | InputJsonValue
-    backendRoadMap?: JsonNullValueInput | InputJsonValue
-    qaRoadmap?: JsonNullValueInput | InputJsonValue
+    content?: NullableStringFieldUpdateOperationsInput | string | null
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: NullableEnumManagerPromptTypeFieldUpdateOperationsInput | $Enums.ManagerPromptType | null
+    frontendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    backendRoadMap?: NullableJsonNullValueInput | InputJsonValue
+    qaRoadmap?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrontendPromptUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrontendPromptUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FrontendPromptUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumFrontendPromptTypeFieldUpdateOperationsInput | $Enums.FrontendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BackendPromptUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BackendPromptUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BackendPromptUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    managerPrompt?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumBackendPromptTypeFieldUpdateOperationsInput | $Enums.BackendPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QAPromptUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QAPromptUncheckedUpdateWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type QAPromptUncheckedUpdateManyWithoutProjectInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    prompt?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: NullableJsonNullValueInput | InputJsonValue
+    responseContent?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumQAPromptTypeFieldUpdateOperationsInput | $Enums.QAPromptType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5787,7 +11132,7 @@ export namespace Prisma {
     description?: string | null
     status: $Enums.Status
     createdAt?: Date | string
-    updatedAt: Date | string
+    updatedAt?: Date | string
   }
 
   export type ProjectUpdateWithoutUserInput = {
@@ -5797,7 +11142,10 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    managerResponse?: ManagerResponseUpdateManyWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateWithoutUserInput = {
@@ -5807,7 +11155,10 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    managerResponse?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    managerResponses?: ManagerResponseUncheckedUpdateManyWithoutProjectNestedInput
+    frontendPrompts?: FrontendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    backendPrompts?: BackendPromptUncheckedUpdateManyWithoutProjectNestedInput
+    qaPrompts?: QAPromptUncheckedUpdateManyWithoutProjectNestedInput
   }
 
   export type ProjectUncheckedUpdateManyWithoutUserInput = {

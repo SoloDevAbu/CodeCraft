@@ -1,70 +1,152 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { ZodSchema } from "zod";
-import { managerPrompt } from "../prompt";
+import { managerPrompt, BackendWorkerPrompt, FrontendWorkerPrompt, QAWorkerPrompt } from "../prompt";
+import { WorkerType } from "../constants";
+import dotenv from "dotenv";
+dotenv.config();
+
+export interface ProjectRoadmap {
+  projectRoadmap: {
+    frontend?: any;
+    backend?: any;
+    qa?: any;
+    [key: string]: any;
+  };
+}
 
 export class WorkerAgent {
-  private static instance: WorkerAgent;
+  private static instances: Map<WorkerType, WorkerAgent> = new Map();
   private googleGenerativeAI: GoogleGenerativeAI;
   private model: any;
 
-  private constructor() {
+  private constructor(workerType: WorkerType) {
     this.googleGenerativeAI = new GoogleGenerativeAI(
       process.env.GOOGLE_API_KEY as string
     );
+
+    const systemInstruction = WorkerAgent.getSystemInstruction(workerType);
+
     this.model = this.googleGenerativeAI.getGenerativeModel({
       model: "gemini-2.0-flash",
-      systemInstruction: managerPrompt,
+      systemInstruction,
     });
   }
 
-  public static getInstance(): WorkerAgent {
-    if (!WorkerAgent.instance) {
-      WorkerAgent.instance = new WorkerAgent();
+  private static getSystemInstruction(workerType: WorkerType): string {
+    switch (workerType) {
+      case WorkerType.MANAGER:
+        return managerPrompt;
+      case WorkerType.FRONTEND:
+        return FrontendWorkerPrompt;
+      case WorkerType.BACKEND:
+        return BackendWorkerPrompt;
+      case WorkerType.QA:
+        return QAWorkerPrompt;
+      default:
+        throw new Error(`Unknown worker type: ${workerType}`);
     }
-    return WorkerAgent.instance;
+  }
+
+  public static getInstance(workerType: WorkerType): WorkerAgent {
+    if (!this.instances.has(workerType)) {
+      this.instances.set(workerType, new WorkerAgent(workerType));
+    }
+    return this.instances.get(workerType)!;
   }
 
   /**
-   * Send a prompt + history to Gemini, collect the full response,
-   * parse it as JSON, validate via Zod, and return the typed result.
-   *
-   * @param prompt    The user spec (e.g. “create me an e‑commerce roadmap”)
-   * @param history   Prior chat history, if any
-   * @param schema    A Zod schema describing the expected JSON shape
+   * Generate a response and parse it as JSON
+   * @param prompt The prompt to send to the LLM
+   * @param history Previous conversation history
+   * @param schema Optional JSON schema to validate against
+   * @returns Parsed JSON response as ProjectRoadmap
    */
-  public async generateResponse<T>(
-    prompt: string,
-    history: string[],
-    schema: ZodSchema<T>
-  ): Promise<T> {
-    // 1. Start chat and stream reply
-    const chat = await this.model.startChat({ history });
-    const stream = await chat.sendMessageStream(prompt);
+  public async generateResponse(
+    prompt: string, 
+    history: string | Array<any> = "",
+    schema?: any
+  ): Promise<ProjectRoadmap> {
+    const formattedHistory = typeof history === "string" 
+      ? [] 
+      : history;
+    
+    const chat = await this.model.startChat({
+      history: formattedHistory
+    });
 
-    // 2. Accumulate into one string
-    let raw = "";
-    for await (const chunk of stream) {
-      // chunk.message?.content contains the textual part
-      raw += chunk.message?.content ?? "";
+    const responseStream = await chat.sendMessageStream(prompt, {
+      temperature: 0.2,
+      maxOutputTokens: 8000,
+      topP: 0.8,
+      topK: 40,
+    });
+
+    let fullResponse = '';
+    for await (const chunk of responseStream.stream) {
+      if (typeof chunk.text === 'function') {
+        fullResponse += chunk.text();
+      } else if (typeof chunk.text === 'string') {
+        fullResponse += chunk.text;
+      }
     }
-
-    // 3. JSON‑parse
-    let parsed: unknown;
+    
     try {
-      parsed = JSON.parse(raw);
-    } catch (err) {
-      throw new Error(`LLM output was not valid JSON:\n${raw}`);
+      const jsonCodeBlockMatch = fullResponse.match(/```(?:json)?\s*({[\s\S]*?})\s*```/);
+      
+      if (jsonCodeBlockMatch && jsonCodeBlockMatch[1]) {
+        const parsedData = JSON.parse(jsonCodeBlockMatch[1]) as ProjectRoadmap;
+        return parsedData;
+      }
+      const jsonMatch = fullResponse.match(/{[\s\S]*?}/);
+      if (jsonMatch) {
+        const parsedData = JSON.parse(jsonMatch[0]) as ProjectRoadmap;
+        console.log("Parsed JSON from llmClient:", parsedData);
+        return parsedData;
+      }
+      
+      throw new Error("No valid JSON found in the response");
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+      
+      return {
+        projectRoadmap: {
+          error: "Failed to parse response as JSON",
+          rawResponse: fullResponse
+        }
+      };
+    }
+  }
+  
+  /**
+   * Get the raw text response without JSON parsing
+   */
+  public async generateTextResponse(
+    prompt: string,
+    history: string | Array<any> = ""
+  ): Promise<string> {
+    const formattedHistory = typeof history === "string" 
+      ? [] 
+      : history;
+    
+    const chat = await this.model.startChat({
+      history: formattedHistory
+    });
+
+    const responseStream = await chat.sendMessageStream(prompt, {
+      temperature: 0.2,
+      maxOutputTokens: 8000,
+      topP: 0.8,
+      topK: 40,
+    });
+
+    let fullResponse = '';
+    for await (const chunk of responseStream.stream) {
+      if (typeof chunk.text === 'function') {
+        fullResponse += chunk.text();
+      } else if (typeof chunk.text === 'string') {
+        fullResponse += chunk.text;
+      }
     }
 
-    // 4. Zod‑validate
-    const result = schema.safeParse(parsed);
-    if (!result.success) {
-      throw new Error(
-        `Response did not match schema:\n${result.error.format()}`
-      );
-    }
-
-    return result.data;
+    return fullResponse;
   }
 }
-

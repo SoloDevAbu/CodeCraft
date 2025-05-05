@@ -24,7 +24,7 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
         }
 
         const decodedToken = await decode({ token, secret });
-        console.log(decodedToken);
+        // console.log(decodedToken);
 
         if(!decodedToken) {
             res.status(404).json({
@@ -37,7 +37,7 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
             id: decodedToken?.id as string,
         };
 
-        console.log(req.user);
+        // console.log(req.user);
 
         next();
     } catch (error) {
