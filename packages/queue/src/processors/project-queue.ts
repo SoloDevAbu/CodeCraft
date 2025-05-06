@@ -6,7 +6,14 @@ export const projectQueueProcessor = async (projectId: string, description: stri
     try {
         const job = await projectQueue.add(JOB_TYPES.CREATE_ROADMAP, {
             projectId,
-            description,
+            userPrompt: description,
+        }, {
+            jobId: `${projectId}-create-roadmap`,
+            attempts: 3,
+            backoff: {
+                type: "exponential",
+                delay: 1000,
+            },
         });
         return job;
     } catch (error) {

@@ -1,6 +1,8 @@
 import IORedis from 'ioredis';
 import { Queue } from 'bullmq';
 import { QUEUE_NAMES } from '../job-constant/job-types';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379');
 

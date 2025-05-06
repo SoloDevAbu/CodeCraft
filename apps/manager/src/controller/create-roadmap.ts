@@ -1,6 +1,12 @@
 import { Request, Response } from 'express';
 import { prisma } from '@repo/db';
 import { WorkerAgent, WorkerType } from '@repo/ai';
+import IORedis from "ioredis";
+import { QUEUE_NAMES, JOB_TYPES } from "@repo/queue";
+import { frontendQueue } from '@repo/queue';
+import { Worker, Queue, Job } from "bullmq";
+
+const connection = new IORedis(process.env.REDIS_URL!);
 
 export const createRoadmap = async (req: Request, res: Response) => {
     const { description } = req.body;

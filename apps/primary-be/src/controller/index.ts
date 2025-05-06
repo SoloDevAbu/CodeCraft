@@ -38,7 +38,7 @@ export const createProject = async (req: Request, res: Response) => {
             }
         });
         
-        await projectQueueProcessor(project.id, description || '');
+        await projectQueueProcessor(project.id, description);
         
         return res.status(201).json({
             status: 'success',
