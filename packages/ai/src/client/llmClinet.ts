@@ -121,7 +121,7 @@ export class WorkerAgent {
    */
   public async generateTextResponse(
     prompt: string,
-    history: string | Array<any> = ""
+    history: string | Array<string> = ""
   ): Promise<string> {
     const formattedHistory = typeof history === "string" 
       ? [] 

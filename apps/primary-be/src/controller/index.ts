@@ -39,9 +39,6 @@ export const createProject = async (req: Request, res: Response) => {
         });
         
         const queue = await projectQueueProcessor(project.id, description);
-
-        console.log("Project queue created", queue);
-        
         return res.status(201).json({
             status: 'success',
             message: 'Project Created Successfully',

@@ -58,7 +58,7 @@ new Worker(QUEUE_NAMES.PROJECT,
     JOB_TYPES.GENERATE_BACKEND,
     {
       projectId,
-      userPrompt: managerResponse.projectRoadmap.backend,
+      userPrompt: JSON.stringify(managerResponse.projectRoadmap.backend),
     },
     {
       jobId: `${projectId}-backend`,

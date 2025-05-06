@@ -1,7 +1,7 @@
 import { Job, Worker } from "bullmq";
 import { WorkerAgent, WorkerType } from "@repo/ai";
 import { prisma } from "@repo/db";
-import { JOB_TYPES, QUEUE_NAMES } from "@repo/queue";
+import { JOB_TYPES, qaQueue, QUEUE_NAMES } from "@repo/queue";
 import IORedis from "ioredis";
 
 const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', {
@@ -17,6 +17,8 @@ new Worker(QUEUE_NAMES.BACKEND,
   }
 
   const { projectId, userPrompt } = job.data;
+
+  console.log("Manager roadmap for backend", userPrompt);
 
   const project = await prisma.project.findUnique({
     where: {
@@ -52,6 +54,8 @@ new Worker(QUEUE_NAMES.BACKEND,
   const worker = WorkerAgent.getInstance(WorkerType.BACKEND);
   const response = await worker.generateTextResponse(userPrompt, JSON.stringify(history));
 
+  console.log("Backend response", response);
+
   await prisma.backendPrompt.create({
     data: {
       prompt: userPrompt,
@@ -62,6 +66,22 @@ new Worker(QUEUE_NAMES.BACKEND,
       type: "SYSTEM",
     },
   });
+
+  await qaQueue.add(
+    JOB_TYPES.GENERATE_QA,
+    {
+      projectId,
+      llmResponse: response,
+    },
+    {
+      jobId: `${projectId}-qa`,
+      attempts: 3,
+      backoff: {
+        type: "exponential",
+        delay: 1000,
+      },
+    }
+  )
 }, {
   connection
 })
