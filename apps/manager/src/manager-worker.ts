@@ -1,13 +1,17 @@
-import { Job, Worker} from "bullmq";
+import { Job, Worker } from "bullmq";
 import { WorkerAgent, WorkerType } from "@repo/ai";
 import { prisma } from "@repo/db";
-import {
-  JOB_TYPES,
-  QUEUE_NAMES,
-  backendQueue
-} from "@repo/queue";
+import { JOB_TYPES, QUEUE_NAMES, backendQueue } from "@repo/queue";
+import IORedis from "ioredis";
 
-new Worker(QUEUE_NAMES.MANAGER, async (job: Job) => {
+const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', {
+  maxRetriesPerRequest: null,
+  enableReadyCheck: false
+});
+
+new Worker(QUEUE_NAMES.PROJECT, 
+  async (job: Job) => {
+  console.log("Manager worker started", job.id, job.name);
   if (job.name !== JOB_TYPES.CREATE_ROADMAP) {
     return;
   }
@@ -31,8 +35,8 @@ new Worker(QUEUE_NAMES.MANAGER, async (job: Job) => {
       projectId,
     },
     orderBy: {
-         createdAt: 'asc'
-    }
+      createdAt: "asc",
+    },
   });
   const managerResponse = await manager.generateResponse(userPrompt, history);
 
@@ -65,7 +69,11 @@ new Worker(QUEUE_NAMES.MANAGER, async (job: Job) => {
       },
     }
   );
-})
-.on("completed", job => console.log(`Manager job ${job.id} completed`))
-.on("failed", (job, err) => console.error(`Manager job ${job?.id} failed:`, err));
-
+}, {
+  connection
+}
+)
+  .on("completed", (job) => console.log(`Manager job ${job.id} completed`))
+  .on("failed", (job, err) =>
+    console.error(`Manager job ${job?.id} failed:`, err)
+  );

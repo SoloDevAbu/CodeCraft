@@ -140,11 +140,7 @@ export class WorkerAgent {
 
     let fullResponse = '';
     for await (const chunk of responseStream.stream) {
-      if (typeof chunk.text === 'function') {
-        fullResponse += chunk.text();
-      } else if (typeof chunk.text === 'string') {
-        fullResponse += chunk.text;
-      }
+      fullResponse += chunk.text();
     }
 
     return fullResponse;
