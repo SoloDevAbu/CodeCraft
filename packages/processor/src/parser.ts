@@ -12,51 +12,70 @@ export class ArtifactProcessor {
     append(artifact: string) {
         this.currentArtifact += artifact;
     }
-
     parse() {
         const latestActionStart = this.currentArtifact.split("\n").findIndex((line) => line.includes("<boltAction type="));
-        const latestActionEnd = this.currentArtifact.split("\n").findIndex((line) => line.includes("</boltAction>")) ?? (this.currentArtifact.split("\n").length - 1);
+        const latestActionEnd = this.currentArtifact.split("\n").findIndex((line) => line.includes("</boltAction>"));
 
-        if(latestActionStart === -1) {
+        if (latestActionStart === -1 || latestActionEnd === -1) {
             return;
         }
 
-        const actionLine = this.currentArtifact.split("\n")[latestActionStart];
-        if (!actionLine || !actionLine.includes("type=")) {
+        const actionLines = this.currentArtifact.split("\n");
+        const actionLine = actionLines[latestActionStart];
+        
+        if (!actionLine?.includes("type=")) {
             return;
         }
-        const typePart = actionLine.split("type=")[1]?.split(" ")[0]?.split(">")[0];
+
+        const typePart = actionLine.split("type=")[1]?.split(" ")[0]?.split(">")[0]?.replace(/"/g, '');
         if (!typePart) {
             return;
         }
-        const latestActionType = typePart;
-        const latestActionContent = this.currentArtifact.split("\n").slice(latestActionStart, latestActionEnd + 1).join("\n");
-
         try {
-            if(latestActionType === "\"shell\"") {
-                let shellCommand = latestActionContent.split("\n").slice(1).join('\n');
+            if (typePart === "shell") {
+                const contentLines = actionLines
+                    .slice(latestActionStart + 1, latestActionEnd)
+                    .filter(line => line.trim());
+                
+                const shellCommand = contentLines.join(' ').trim();
+                this.onShellCommand(shellCommand);
+                
+            } else if (typePart === "file") {
+                const filePathMatch = actionLine.match(/filePath="([^"]+)"/);
+                if (!filePathMatch) {
+                    throw new Error("Invalid filePath format");
+                }
+                
+                const filePath = filePathMatch[1];
+                let contentLines = actionLines
+                    .slice(latestActionStart + 1, latestActionEnd)
+                    .map(line => line.replace(/\r/g, ''));
 
-                if(shellCommand.includes("</boltAction>")) {
-                    shellCommand = shellCommand.split("</boltAction>")[0] ?? "";
-                    this.currentArtifact = this.currentArtifact.split(latestActionContent)[1] ?? "";
-                    this.onShellCommand(shellCommand);
-                }
-            } else if (latestActionType === "\"file\"") {
-                const filePathPart = this.currentArtifact.split("\n")[latestActionStart]?.split("filePath=")[1];
-                const filePath = filePathPart?.split(">")[0];
-                if (!filePath) {
-                    throw new Error("Invalid filePath format in the artifact.");
-                }
-                let fileContent = latestActionContent.split("\n").slice(1).join("\n");
-                if (fileContent.includes("</boltAction>")) {
-                    fileContent = fileContent.split("</boltAction>")[0] ?? "";
-                    this.currentArtifact = this.currentArtifact.split(latestActionContent)[1] ?? "";
-                    const resolvedFilePath = filePath.split("\"")[1] ?? (() => { throw new Error("Invalid filePath format in the artifact."); })();
-                    this.onFileContent(resolvedFilePath, fileContent);
-                }
-               }
-            } catch(e) {
+                const minIndent = contentLines
+                .filter(line => line.trim().length > 0)
+                .reduce((min, line) => {
+                    const match = line.match(/^\s*/);
+                    const indent = match ? match[0].length : 0;
+                    return Math.min(min, indent);
+                }, Infinity);
+                
+                contentLines = contentLines
+                    .map(line => line.slice(minIndent).trimRight())
+                    .filter(line => line.length > 0);
 
+                const fileContent = contentLines.join('\n');
+                if (filePath) {
+                    this.onFileContent(filePath, fileContent);
+                } else {
+                    throw new Error("filePath is undefined.");
+                }
             }
+            this.currentArtifact = actionLines
+                .slice(latestActionEnd + 1)
+                .join('\n');
+
+        } catch (e) {
+            console.error('Error parsing artifact:', e);
+        }
     }
 }

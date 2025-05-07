@@ -1,13 +1,16 @@
 import * as fs from 'fs/promises';
 import { execSync } from 'child_process';
 import * as path from 'path';
-const BASE_WORKER_DIR = process.env.WORKER_DIR || "/workspace";
+
+const BASE_WORKER_DIR = process.env.WORKER_DIR || path.join(process.env.HOME || '/home/abu', 'Projects', 'generated');
 
 async function initialize() {
     try {
         await fs.access(BASE_WORKER_DIR);
+        console.log(`Using existing directory: ${BASE_WORKER_DIR}`);
     } catch {
         await fs.mkdir(BASE_WORKER_DIR, { recursive: true });
+        console.log(`Created new directory: ${BASE_WORKER_DIR}`);
     }
 }
 

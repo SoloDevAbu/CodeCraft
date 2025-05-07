@@ -3,6 +3,7 @@ import { WorkerAgent, WorkerType } from "@repo/ai";
 import { prisma } from "@repo/db";
 import { JOB_TYPES, qaQueue, QUEUE_NAMES } from "@repo/queue";
 import IORedis from "ioredis";
+import { ArtifactProcessor, onFileUpdate, onShellCommand } from "@repo/processor";
 
 const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', {
   maxRetriesPerRequest: null,
@@ -55,7 +56,17 @@ new Worker(QUEUE_NAMES.BACKEND,
   const response = await worker.generateTextResponse(userPrompt, JSON.stringify(history));
 
   console.log("Backend response", response);
+  
+  let artifactProcessor = new ArtifactProcessor('', onFileUpdate, onShellCommand);
+  let artifact = '';
 
+  for await (const chunk of response) {
+    console.log("Chunk", chunk);
+    artifactProcessor.append(chunk);
+    artifactProcessor.parse();
+
+    artifact += chunk;
+  }
   await prisma.backendPrompt.create({
     data: {
       prompt: userPrompt,
@@ -66,6 +77,7 @@ new Worker(QUEUE_NAMES.BACKEND,
       type: "SYSTEM",
     },
   });
+
 
   await qaQueue.add(
     JOB_TYPES.GENERATE_QA,
