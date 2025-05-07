@@ -2,12 +2,7 @@ import { Job, Worker } from "bullmq";
 import { WorkerAgent, WorkerType } from "@repo/ai";
 import { prisma } from "@repo/db";
 import { JOB_TYPES, QUEUE_NAMES, backendQueue } from "@repo/queue";
-import IORedis from "ioredis";
-
-const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', {
-  maxRetriesPerRequest: null,
-  enableReadyCheck: false
-});
+import { connection } from "@repo/queue";
 
 new Worker(QUEUE_NAMES.PROJECT, 
   async (job: Job) => {

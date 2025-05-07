@@ -2,12 +2,7 @@ import { Job, Worker } from "bullmq";
 import { WorkerAgent, WorkerType } from "@repo/ai";
 import { prisma } from "@repo/db";
 import { JOB_TYPES, QUEUE_NAMES } from "@repo/queue";
-import IORedis from "ioredis";
-
-const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', {
-  maxRetriesPerRequest: null,
-  enableReadyCheck: false
-});
+import { connection } from "@repo/queue";
 
 new Worker(QUEUE_NAMES.QA, 
   async (job: Job) => {
@@ -37,13 +32,18 @@ new Worker(QUEUE_NAMES.QA,
     orderBy: {
       createdAt: "asc",
     },
-    select: {
-      responseContent: true,
-    }
   });
 
+  const formattedHistory = history.map(item => ({
+    role: "user",
+    content: JSON.stringify(item.content),
+  })).concat(history.map(item => ({
+    role: "assistant",
+    content: JSON.stringify(item.responseContent),
+  })));
+
   const worker = WorkerAgent.getInstance(WorkerType.QA);
-  const response = await worker.generateTextResponse(llmResponse, JSON.stringify(history));
+  const response = await worker.generateTextResponse(llmResponse, JSON.stringify(formattedHistory));
 
   console.log("QA response", response);
 

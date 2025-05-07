@@ -2,13 +2,8 @@ import { Job, Worker } from "bullmq";
 import { WorkerAgent, WorkerType } from "@repo/ai";
 import { prisma } from "@repo/db";
 import { JOB_TYPES, qaQueue, QUEUE_NAMES } from "@repo/queue";
-import IORedis from "ioredis";
 import { ArtifactProcessor, onFileUpdate, onShellCommand } from "@repo/processor";
-
-const connection = new IORedis(process.env.REDIS_URL || 'redis://localhost:6379', {
-  maxRetriesPerRequest: null,
-  enableReadyCheck: false
-});
+import { connection } from "@repo/queue";
 
 new Worker(QUEUE_NAMES.BACKEND, 
   async (job: Job) => {
@@ -61,7 +56,6 @@ new Worker(QUEUE_NAMES.BACKEND,
   let artifact = '';
 
   for await (const chunk of response) {
-    console.log("Chunk", chunk);
     artifactProcessor.append(chunk);
     artifactProcessor.parse();
 
