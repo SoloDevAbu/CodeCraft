@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Appbar() {
   const { data: session } = useSession();
   return (
-    <div className="flex justify-between items-center p-4">
+    <div className="bg-transparent fixed flex justify-between items-center p-4 z-50 w-full">
         <div>
             <Image
                 src="/image.png"
