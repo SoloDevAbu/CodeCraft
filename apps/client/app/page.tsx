@@ -1,5 +1,5 @@
 import Appbar from "@/components/appbar";
-// import ChatUI from "@/components/chatUI";
+import ChatUI from "@/components/chatUI";
 import OfficeGame from "@/components/OfficeGame";
 // import { OfficeScene } from "@/components/officeScene";
 
@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       <Appbar />
       <OfficeGame />
-      {/* <ChatUI /> */}
+      <ChatUI />
     </div>
   );
 }
