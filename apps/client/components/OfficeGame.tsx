@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import officeMap from '@/assets/office-map.png';
+import officeMap from '@/assets/office.jpg';
 import playerSprite from '@/assets/dev-sprite.png';
 
 export default function OfficeGame() {
