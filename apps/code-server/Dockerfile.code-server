@@ -13,4 +13,4 @@ USER coder
 # Expose code-server's default port
 EXPOSE 8081
 
-CMD ["code-server", "--auth", "none", "--bind-addr", "0.0.0.0:8080", "--disable-telemetry", "/app"]
+CMD ["code-server", "--auth", "none", "--bind-addr", "0.0.0.0:8081", "--disable-telemetry", "/app"]
