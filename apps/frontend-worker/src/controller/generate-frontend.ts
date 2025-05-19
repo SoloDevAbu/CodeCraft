@@ -32,10 +32,16 @@ export const generateFrontend = async (req: Request, res: Response) => {
         const history = await prisma.frontendPrompt.findMany({
             where: {
                 projectId: projectId
+            },
+            select: {
+                prompt: true,
+                responseContent: true,
             }
         });
 
-        const response = await worker.generateTextResponse(JSON.stringify(roadmap), history);
+        const historyStrings = history.map(item => `${item.prompt ?? ''}\n${item.responseContent ?? ''}`);
+        
+        const response = await worker.generateTextResponse(JSON.stringify(roadmap), historyStrings);
         console.log('frontend agent response', response);
 
         const frontendPrompt = await prisma.frontendPrompt.create({
